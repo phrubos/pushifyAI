@@ -91,240 +91,240 @@ This implementation plan outlines the step-by-step process for transforming the 
 
 Install/create the following shadcn/ui components:
 
-- [ ] `input.tsx` - Form input component
+- [x] `input.tsx` - Form input component
   ```bash
   npx shadcn@latest add input
   ```
-- [ ] `textarea.tsx` - Multi-line text input
+- [x] `textarea.tsx` - Multi-line text input
   ```bash
   npx shadcn@latest add textarea
   ```
-- [ ] `tabs.tsx` - Tabbed navigation component
+- [x] `tabs.tsx` - Tabbed navigation component
   ```bash
   npx shadcn@latest add tabs
   ```
-- [ ] `accordion.tsx` - Collapsible sections
+- [x] `accordion.tsx` - Collapsible sections
   ```bash
   npx shadcn@latest add accordion
   ```
-- [ ] `alert.tsx` - Alert/notification component
+- [x] `alert.tsx` - Alert/notification component
   ```bash
   npx shadcn@latest add alert
   ```
-- [ ] `skeleton.tsx` - Loading skeleton
+- [x] `skeleton.tsx` - Loading skeleton
   ```bash
   npx shadcn@latest add skeleton
   ```
-- [ ] `select.tsx` - Dropdown select
+- [x] `select.tsx` - Dropdown select
   ```bash
   npx shadcn@latest add select
   ```
-- [ ] `progress.tsx` - Progress bar
+- [x] `progress.tsx` - Progress bar
   ```bash
   npx shadcn@latest add progress
   ```
 
 ### 2.2 Create Plushify Components Directory
 
-- [ ] Create directory: `src/components/plushify/`
-- [ ] Create `index.ts` for easy imports
+- [x] Create directory: `src/components/plushify/`
+- [x] Create `index.ts` for easy imports
 
 ### 2.3 Create Credit Display Component
 
 **File**: `src/components/plushify/credit-display.tsx`
 
-- [ ] Create component file
-- [ ] Accept `credits` prop (number)
-- [ ] Display credits with icon (Coins from Lucide)
-- [ ] Show format: "42 credits" or "42"
-- [ ] Support different sizes (sm, md, lg)
-- [ ] Add hover effect with tooltip showing credit value
-- [ ] Export component
+- [x] Create component file
+- [x] Accept `credits` prop (number)
+- [x] Display credits with icon (Coins from Lucide)
+- [x] Show format: "42 credits" or "42"
+- [x] Support different sizes (sm, md, lg)
+- [x] Add hover effect with tooltip showing credit value
+- [x] Export component
 
 ### 2.4 Create User Menu Component
 
 **File**: `src/components/plushify/user-menu.tsx`
 
-- [ ] Create component file
-- [ ] Import mock user data
-- [ ] Display user avatar using Avatar component
-- [ ] Create dropdown menu with DropdownMenu component
-- [ ] Add menu items:
+- [x] Create component file
+- [x] Import mock user data
+- [x] Display user avatar using Avatar component
+- [x] Create dropdown menu with DropdownMenu component
+- [x] Add menu items:
   - Dashboard (link to /dashboard)
   - Gallery (link to /gallery)
   - Profile (link to /profile)
   - Separator
   - Pricing (link to /pricing)
-- [ ] Show user name and email in menu header
-- [ ] Add client directive `"use client"`
-- [ ] Export component
+- [x] Show user name and email in menu header
+- [x] Add client directive `"use client"`
+- [x] Export component
 
 ### 2.5 Create Generation Status Component
 
 **File**: `src/components/plushify/generation-status.tsx`
 
-- [ ] Create component file
-- [ ] Accept `status` prop: "pending" | "processing" | "completed" | "failed"
-- [ ] Use Badge component from shadcn/ui
-- [ ] Define color variants for each status:
+- [x] Create component file
+- [x] Accept `status` prop: "pending" | "processing" | "completed" | "failed"
+- [x] Use Badge component from shadcn/ui
+- [x] Define color variants for each status:
   - pending: gray
   - processing: blue with animation
   - completed: green
   - failed: red
-- [ ] Add appropriate icons for each status
-- [ ] Export component
+- [x] Add appropriate icons for each status
+- [x] Export component
 
 ### 2.6 Create Pricing Card Component
 
 **File**: `src/components/plushify/pricing-card.tsx`
 
-- [ ] Create component file
-- [ ] Accept props: plan name, price, credits, features[], badge, isPopular
-- [ ] Use Card component from shadcn/ui
-- [ ] Display plan name as CardTitle
-- [ ] Display price (large text)
-- [ ] Display credit amount
-- [ ] Calculate and show price per credit
-- [ ] List features with checkmark icons
-- [ ] Add "Choose Plan" button
-- [ ] Show badge if provided ("Popular", "Best Value")
-- [ ] Add hover effect
-- [ ] Export component
+- [x] Create component file
+- [x] Accept props: plan name, price, credits, features[], badge, isPopular
+- [x] Use Card component from shadcn/ui
+- [x] Display plan name as CardTitle
+- [x] Display price (large text)
+- [x] Display credit amount
+- [x] Calculate and show price per credit
+- [x] List features with checkmark icons
+- [x] Add "Choose Plan" button
+- [x] Show badge if provided ("Popular", "Best Value")
+- [x] Add hover effect
+- [x] Export component
 
 ### 2.7 Create Before/After Slider Component
 
 **File**: `src/components/plushify/before-after-slider.tsx`
 
-- [ ] Create component file
-- [ ] Add client directive `"use client"`
-- [ ] Accept props: beforeImage, afterImage, alt text
-- [ ] Create container with relative positioning
-- [ ] Overlay two images
-- [ ] Add draggable slider handle
-- [ ] Use useState to track slider position (0-100%)
-- [ ] Implement mouse drag functionality
-- [ ] Implement touch drag for mobile
-- [ ] Add visual slider line and handle
-- [ ] Clip images based on slider position
-- [ ] Add labels: "Before" and "After"
-- [ ] Export component
+- [x] Create component file
+- [x] Add client directive `"use client"`
+- [x] Accept props: beforeImage, afterImage, alt text
+- [x] Create container with relative positioning
+- [x] Overlay two images
+- [x] Add draggable slider handle
+- [x] Use useState to track slider position (0-100%)
+- [x] Implement mouse drag functionality
+- [x] Implement touch drag for mobile
+- [x] Add visual slider line and handle
+- [x] Clip images based on slider position
+- [x] Add labels: "Before" and "After"
+- [x] Export component
 
 ### 2.8 Create Image Uploader Component
 
 **File**: `src/components/plushify/image-uploader.tsx`
 
-- [ ] Create component file
-- [ ] Add client directive `"use client"`
-- [ ] Accept props: onImageSelect callback
-- [ ] Create drag-and-drop zone
-- [ ] Handle dragover, dragleave, drop events
-- [ ] Add file input (hidden) with click trigger
-- [ ] Accept only JPG and PNG files
-- [ ] Use FileReader to create preview
-- [ ] Display upload icon and text when empty
-- [ ] Display image preview when file selected
-- [ ] Add "Change Image" button on preview
-- [ ] Show file size and type
-- [ ] Add validation for file type and size
-- [ ] Export component
+- [x] Create component file
+- [x] Add client directive `"use client"`
+- [x] Accept props: onImageSelect callback
+- [x] Create drag-and-drop zone
+- [x] Handle dragover, dragleave, drop events
+- [x] Add file input (hidden) with click trigger
+- [x] Accept only JPG and PNG files
+- [x] Use FileReader to create preview
+- [x] Display upload icon and text when empty
+- [x] Display image preview when file selected
+- [x] Add "Change Image" button on preview
+- [x] Show file size and type
+- [x] Add validation for file type and size
+- [x] Export component
 
 ### 2.9 Create Gallery Item Component
 
 **File**: `src/components/plushify/gallery-item.tsx`
 
-- [ ] Create component file
-- [ ] Add client directive `"use client"`
-- [ ] Accept props: generation object (id, image, date, status, isFavorite)
-- [ ] Use Card component
-- [ ] Display generated plushie image
-- [ ] Show generation date (formatted)
-- [ ] Show status badge using GenerationStatus component
-- [ ] Create hover overlay with actions:
+- [x] Create component file
+- [x] Add client directive `"use client"`
+- [x] Accept props: generation object (id, image, date, status, isFavorite)
+- [x] Use Card component
+- [x] Display generated plushie image
+- [x] Show generation date (formatted)
+- [x] Show status badge using GenerationStatus component
+- [x] Create hover overlay with actions:
   - Download button
   - Delete button
   - Favorite toggle button
   - View original button/icon
-- [ ] Implement hover state showing overlay
-- [ ] Add onClick handler for actions
-- [ ] Show favorite star indicator if favorited
-- [ ] Export component
+- [x] Implement hover state showing overlay
+- [x] Add onClick handler for actions
+- [x] Show favorite star indicator if favorited
+- [x] Export component
 
 ### 2.10 Create Gallery Grid Component
 
 **File**: `src/components/plushify/gallery-grid.tsx`
 
-- [ ] Create component file
-- [ ] Accept props: generations array, onDelete, onFavorite, onDownload callbacks
-- [ ] Create responsive grid layout:
+- [x] Create component file
+- [x] Accept props: generations array, onDelete, onFavorite, onDownload callbacks
+- [x] Create responsive grid layout:
   - 1 column on mobile
   - 2 columns on tablet
   - 3-4 columns on desktop
-- [ ] Map over generations and render GalleryItem for each
-- [ ] Handle empty state (show message if no generations)
-- [ ] Add gap between items
-- [ ] Export component
+- [x] Map over generations and render GalleryItem for each
+- [x] Handle empty state (show message if no generations)
+- [x] Add gap between items
+- [x] Export component
 
 ### 2.11 Create Filter Bar Component
 
 **File**: `src/components/plushify/filter-bar.tsx`
 
-- [ ] Create component file
-- [ ] Add client directive `"use client"`
-- [ ] Accept props: onSortChange, onFilterChange, onSearch callbacks
-- [ ] Create layout with three sections:
+- [x] Create component file
+- [x] Add client directive `"use client"`
+- [x] Accept props: onSortChange, onFilterChange, onSearch callbacks
+- [x] Create layout with three sections:
   - Sort dropdown (Newest, Oldest, Favorites)
   - Status filter dropdown (All, Completed, Processing)
   - Search input
-- [ ] Use Select component for dropdowns
-- [ ] Use Input component for search
-- [ ] Add icons for each control
-- [ ] Make responsive (stack on mobile)
-- [ ] Export component
+- [x] Use Select component for dropdowns
+- [x] Use Input component for search
+- [x] Add icons for each control
+- [x] Make responsive (stack on mobile)
+- [x] Export component
 
 ### 2.12 Create Generation Wizard Component
 
 **File**: `src/components/plushify/generation-wizard.tsx`
 
-- [ ] Create component file
-- [ ] Add client directive `"use client"`
-- [ ] Set up state for:
+- [x] Create component file
+- [x] Add client directive `"use client"`
+- [x] Set up state for:
   - Current step (1-4)
   - Uploaded image
   - Selected style
   - Selected size
   - Processing progress
   - Generated result
-- [ ] **Step 1: Upload**
+- [x] **Step 1: Upload**
   - Use ImageUploader component
   - Store uploaded image in state
   - Show "Next" button when image selected
-- [ ] **Step 2: Preview & Options**
+- [x] **Step 2: Preview & Options**
   - Display uploaded image preview
   - Create style radio buttons (Cute, Realistic, Cartoon)
   - Create size Select dropdown (Small, Medium, Large)
   - Add "Back" button
   - Add "Generate" button
-- [ ] **Step 3: Processing**
+- [x] **Step 3: Processing**
   - Show loading spinner
   - Display animated Progress component (0-100%)
   - Show rotating status messages
   - Simulate 3-4 second delay with setTimeout
   - Update progress incrementally
-- [ ] **Step 4: Result**
+- [x] **Step 4: Result**
   - Use BeforeAfterSlider component
   - Show uploaded image vs mock generated result
   - Add "Download" button
   - Add "Generate Another" button (resets wizard)
   - Add "View Gallery" button
-- [ ] Add step indicator showing current step (1/4, 2/4, etc.)
-- [ ] Export component
+- [x] Add step indicator showing current step (1/4, 2/4, etc.)
+- [x] Export component
 
 ### 2.13 Verify Components
 
-- [ ] Test each component in isolation if possible
-- [ ] Run `npm run lint`
-- [ ] Run `npm run typecheck`
-- [ ] Verify all exports work correctly
+- [x] Test each component in isolation if possible
+- [x] Run `npm run lint`
+- [x] Run `npm run typecheck`
+- [x] Verify all exports work correctly
 
 ---
 
