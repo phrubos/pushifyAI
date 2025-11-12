@@ -8,6 +8,20 @@
       "when": 1762409965425,
       "tag": "0000_chilly_the_phantom",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1762808648525,
+      "tag": "0001_abandoned_tarantula",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1762808735950,
+      "tag": "0002_panoramic_blue_blade",
+      "breakpoints": true
     }
   ]
 }
