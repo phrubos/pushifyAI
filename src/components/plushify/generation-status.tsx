@@ -18,6 +18,7 @@ export function GenerationStatus({
       label: "Pending",
       icon: Clock,
       className: "bg-gray-500/10 text-gray-600 dark:text-gray-400",
+      animate: false,
     },
     processing: {
       label: "Processing",
@@ -29,11 +30,13 @@ export function GenerationStatus({
       label: "Completed",
       icon: CheckCircle2,
       className: "bg-green-500/10 text-green-600 dark:text-green-400",
+      animate: false,
     },
     failed: {
       label: "Failed",
       icon: XCircle,
       className: "bg-red-500/10 text-red-600 dark:text-red-400",
+      animate: false,
     },
   };
 
