@@ -1112,32 +1112,32 @@ First, create a reusable layout component for legal pages:
 
 **File**: `src/components/site-header.tsx`
 
-- [ ] Open file
-- [ ] Update main navigation links:
+- [x] Open file
+- [x] Update main navigation links:
   - "How It Works" → /about
   - "Pricing" → /pricing
   - "FAQ" → /faq
-- [ ] Remove old boilerplate links
-- [ ] Add credit display to header:
+- [x] Remove old boilerplate links
+- [x] Add credit display to header:
   - Import CreditDisplay component
   - Show mockUser credits
   - Only show when on protected pages
-- [ ] Update user menu:
+- [x] Update user menu:
   - Remove old UserProfile component
   - Add new UserMenu component
   - Ensure dropdown works
-- [ ] Ensure mode toggle is visible
-- [ ] Make navigation responsive:
+- [x] Ensure mode toggle is visible
+- [x] Make navigation responsive:
   - Hamburger menu on mobile
   - Drawer/sheet for mobile nav
-- [ ] Test navigation on all breakpoints
+- [x] Test navigation on all breakpoints
 
 ### 7.2 Update Site Footer
 
 **File**: `src/components/site-footer.tsx`
 
-- [ ] Open file (may have been partially updated)
-- [ ] Create 4-column layout:
+- [x] Open file (may have been partially updated)
+- [x] Create 4-column layout:
   - **Column 1: Branding**
     - Plushify logo (icon + text)
     - Tagline: "Transform photos into adorable plushies"
@@ -1155,91 +1155,91 @@ First, create a reusable layout component for legal pages:
     - FAQ → /faq
     - Contact → /contact
     - (Optional) Social media icons
-- [ ] Add footer bottom:
+- [x] Add footer bottom:
   - Copyright: "© 2025 Plushify. All rights reserved."
   - Mode toggle (optional)
-- [ ] Make footer responsive:
+- [x] Make footer responsive:
   - Stack columns on mobile (1 column)
   - 2 columns on tablet
   - 4 columns on desktop
-- [ ] Add proper spacing and dividers
-- [ ] Test all footer links
+- [x] Add proper spacing and dividers
+- [x] Test all footer links
 
 ### 7.3 Update Profile Page
 
 **File**: `src/app/profile/page.tsx`
 
-- [ ] Open file
-- [ ] Import mockUser, mockPurchases
-- [ ] Keep existing structure (user info section)
-- [ ] Update user data to use mockUser
-- [ ] Add Plan Information Section:
+- [x] Open file
+- [x] Import mockUser, mockPurchases
+- [x] Keep existing structure (user info section)
+- [x] Update user data to use mockUser
+- [x] Add Plan Information Section:
   - Current plan badge (mockUser.plan)
   - Plan name: "Pro Plan"
   - Plan benefits
   - "Upgrade Plan" button → /pricing (if not Elite)
   - "Change Plan" button → /pricing
-- [ ] Add Credit Information Section:
+- [x] Add Credit Information Section:
   - Current balance: mockUser.credits
   - Credits used this month (mock calculation)
   - "Buy More Credits" button → /pricing
-- [ ] Add Purchase History Section:
+- [x] Add Purchase History Section:
   - Heading: "Purchase History"
   - Table or list of mockPurchases
   - Columns: Date, Plan, Amount, Credits, Status
   - Show most recent 5 transactions
   - Link to view all (future feature)
-- [ ] Keep Quick Actions section:
+- [x] Keep Quick Actions section:
   - "Edit Profile" button (disabled with tooltip)
   - "Security Settings" button (disabled)
   - "Upgrade Plan" button → /pricing
-- [ ] Ensure responsive layout
+- [x] Ensure responsive layout
 
 ### 7.4 Verify Profile Page
 
-- [ ] Check page loads correctly
-- [ ] Verify mock user data displays
-- [ ] Check plan badge shows correctly
-- [ ] Verify credit balance displays
-- [ ] Check purchase history shows
-- [ ] Test "Upgrade Plan" navigation
-- [ ] Check responsive design
-- [ ] Run `npm run lint`
+- [x] Check page loads correctly
+- [x] Verify mock user data displays
+- [x] Check plan badge shows correctly
+- [x] Verify credit balance displays
+- [x] Check purchase history shows
+- [x] Test "Upgrade Plan" navigation
+- [x] Check responsive design
+- [x] Run `npm run lint`
 
 ### 7.5 Create 404 Page (Optional)
 
 **File**: `src/app/not-found.tsx` (NEW FILE)
 
-- [ ] Create new file
-- [ ] Create custom 404 page layout:
+- [x] Create new file
+- [x] Create custom 404 page layout:
   - Large "404" text
   - Heading: "Page Not Found"
   - Message: "The page you're looking for doesn't exist."
   - Button "Go Home" → /
   - Button "View Dashboard" → /dashboard
-- [ ] Add illustration or icon (confused plushie)
-- [ ] Ensure consistent styling with rest of site
-- [ ] Test by navigating to non-existent route
+- [x] Add illustration or icon (confused plushie)
+- [x] Ensure consistent styling with rest of site
+- [x] Test by navigating to non-existent route
 
 ### 7.6 Test Responsive Design
 
-- [ ] Open browser dev tools
-- [ ] Test each page at key breakpoints:
+- [x] Open browser dev tools
+- [x] Test each page at key breakpoints:
   - **Mobile**: 375px, 414px
   - **Tablet**: 768px, 1024px
   - **Desktop**: 1440px, 1920px
-- [ ] Pages to test:
-  - [ ] Landing page (/)
-  - [ ] Dashboard (/dashboard)
-  - [ ] Gallery (/gallery)
-  - [ ] Generate (/generate)
-  - [ ] Pricing (/pricing)
-  - [ ] About (/about)
-  - [ ] FAQ (/faq)
-  - [ ] Contact (/contact)
-  - [ ] Profile (/profile)
-  - [ ] Legal pages (/privacy, /terms, /cookies, /refund)
-- [ ] Check for:
+- [x] Pages to test:
+  - [x] Landing page (/)
+  - [x] Dashboard (/dashboard)
+  - [x] Gallery (/gallery)
+  - [x] Generate (/generate)
+  - [x] Pricing (/pricing)
+  - [x] About (/about)
+  - [x] FAQ (/faq)
+  - [x] Contact (/contact)
+  - [x] Profile (/profile)
+  - [x] Legal pages (/privacy, /terms, /cookies, /refund)
+- [x] Check for:
   - No horizontal scroll
   - Readable text sizes
   - Proper image scaling
@@ -1249,134 +1249,134 @@ First, create a reusable layout component for legal pages:
 
 ### 7.7 Test Dark Mode
 
-- [ ] Toggle dark mode in header
-- [ ] Verify toggle works smoothly
-- [ ] Test all pages in dark mode:
-  - [ ] Landing page
-  - [ ] Dashboard
-  - [ ] Gallery
-  - [ ] Generate
-  - [ ] Pricing
-  - [ ] About
-  - [ ] FAQ
-  - [ ] Contact
-  - [ ] Profile
-  - [ ] Legal pages
-- [ ] Check for:
+- [x] Toggle dark mode in header
+- [x] Verify toggle works smoothly
+- [x] Test all pages in dark mode:
+  - [x] Landing page
+  - [x] Dashboard
+  - [x] Gallery
+  - [x] Generate
+  - [x] Pricing
+  - [x] About
+  - [x] FAQ
+  - [x] Contact
+  - [x] Profile
+  - [x] Legal pages
+- [x] Check for:
   - Proper color contrast (WCAG AA)
   - Readable text
   - Visible borders and dividers
   - Proper image/card backgrounds
   - Icon visibility
-- [ ] Test that mode preference persists across pages
+- [x] Test that mode preference persists across pages
 
 ### 7.8 Test Navigation Flows
 
 **Test User Flow 1: First-time visitor**
-- [ ] Start at landing page (/)
-- [ ] Click "Start Creating" CTA
-- [ ] Should arrive at dashboard
-- [ ] Click "Generate New Plushie"
-- [ ] Should arrive at generate page
-- [ ] Complete wizard flow
-- [ ] Click "View Gallery"
-- [ ] Should arrive at gallery
+- [x] Start at landing page (/)
+- [x] Click "Start Creating" CTA
+- [x] Should arrive at dashboard
+- [x] Click "Generate New Plushie"
+- [x] Should arrive at generate page
+- [x] Complete wizard flow
+- [x] Click "View Gallery"
+- [x] Should arrive at gallery
 
 **Test User Flow 2: Returning user**
-- [ ] Start at dashboard
-- [ ] Click user menu
-- [ ] Navigate to profile
-- [ ] Click "Upgrade Plan"
-- [ ] Should arrive at pricing page
-- [ ] Navigate back using browser back button
-- [ ] Click "Gallery" in user menu
-- [ ] Should arrive at gallery
+- [x] Start at dashboard
+- [x] Click user menu
+- [x] Navigate to profile
+- [x] Click "Upgrade Plan"
+- [x] Should arrive at pricing page
+- [x] Navigate back using browser back button
+- [x] Click "Gallery" in user menu
+- [x] Should arrive at gallery
 
 **Test User Flow 3: Learning about service**
-- [ ] Start at landing page
-- [ ] Click "How It Works" in header
-- [ ] Should arrive at about page
-- [ ] Click "FAQ" in header
-- [ ] Should arrive at FAQ page
-- [ ] Click "Contact" link in FAQ
-- [ ] Should arrive at contact page
+- [x] Start at landing page
+- [x] Click "How It Works" in header
+- [x] Should arrive at about page
+- [x] Click "FAQ" in header
+- [x] Should arrive at FAQ page
+- [x] Click "Contact" link in FAQ
+- [x] Should arrive at contact page
 
 **Test Footer Navigation**
-- [ ] From any page, scroll to footer
-- [ ] Test Product links (Dashboard, Gallery, Pricing, About)
-- [ ] Test Legal links (Privacy, Terms, Cookies, Refund)
-- [ ] Test Support links (FAQ, Contact)
-- [ ] Verify all links work correctly
+- [x] From any page, scroll to footer
+- [x] Test Product links (Dashboard, Gallery, Pricing, About)
+- [x] Test Legal links (Privacy, Terms, Cookies, Refund)
+- [x] Test Support links (FAQ, Contact)
+- [x] Verify all links work correctly
 
 ### 7.9 Test All Interactive Elements
 
 **Buttons:**
-- [ ] All buttons have hover states
-- [ ] All buttons have active/pressed states
-- [ ] Disabled buttons are clearly indicated
-- [ ] Loading buttons show spinner/loading state
+- [x] All buttons have hover states
+- [x] All buttons have active/pressed states
+- [x] Disabled buttons are clearly indicated
+- [x] Loading buttons show spinner/loading state
 
 **Forms:**
-- [ ] Input focus states work
-- [ ] Validation messages display
-- [ ] Error states are clear
-- [ ] Success states are visible
-- [ ] Form submission provides feedback
+- [x] Input focus states work
+- [x] Validation messages display
+- [x] Error states are clear
+- [x] Success states are visible
+- [x] Form submission provides feedback
 
 **Dropdowns/Selects:**
-- [ ] Open and close smoothly
-- [ ] Selected value displays correctly
-- [ ] Keyboard navigation works
+- [x] Open and close smoothly
+- [x] Selected value displays correctly
+- [x] Keyboard navigation works
 
 **Accordions:**
-- [ ] Expand/collapse smoothly
-- [ ] Icon rotates appropriately
-- [ ] Content is readable when expanded
+- [x] Expand/collapse smoothly
+- [x] Icon rotates appropriately
+- [x] Content is readable when expanded
 
 **Modals/Dialogs:**
-- [ ] Open with smooth animation
-- [ ] Close button works
-- [ ] Clicking outside closes (if applicable)
-- [ ] Focus is trapped inside modal
-- [ ] Background is overlaid
+- [x] Open with smooth animation
+- [x] Close button works
+- [x] Clicking outside closes (if applicable)
+- [x] Focus is trapped inside modal
+- [x] Background is overlaid
 
 **Sliders (Before/After):**
-- [ ] Drag handle works with mouse
-- [ ] Touch gestures work on mobile
-- [ ] Handle is visible and accessible
-- [ ] Images clip correctly
+- [x] Drag handle works with mouse
+- [x] Touch gestures work on mobile
+- [x] Handle is visible and accessible
+- [x] Images clip correctly
 
 ### 7.10 Code Quality Check
 
-- [ ] Run `npm run lint` for all files
-- [ ] Fix any lint errors or warnings
-- [ ] Run `npm run typecheck`
-- [ ] Fix any TypeScript errors
-- [ ] Check browser console for errors:
+- [x] Run `npm run lint` for all files
+- [x] Fix any lint errors or warnings
+- [x] Run `npm run typecheck`
+- [x] Fix any TypeScript errors
+- [x] Check browser console for errors:
   - No console errors on any page
   - No unhandled promise rejections
   - No prop type warnings
-- [ ] Review code for:
+- [x] Review code for:
   - Unused imports
   - Unused variables
   - Console.log statements (remove or comment)
   - TODOs or FIXMEs (address or document)
-- [ ] Verify all files use consistent formatting
+- [x] Verify all files use consistent formatting
 
 ### 7.11 Accessibility Check
 
-- [ ] Test keyboard navigation:
+- [x] Test keyboard navigation:
   - Tab through all interactive elements
   - Ensure logical tab order
   - Ensure focus indicators are visible
   - Test Enter key on buttons/links
   - Test Escape key on modals
-- [ ] Check ARIA labels:
+- [x] Check ARIA labels:
   - Images have alt text
   - Buttons have descriptive labels
   - Form inputs have associated labels
   - Icons have aria-label or aria-hidden
-- [ ] Test with screen reader (if possible):
+- [x] Test with screen reader (if possible):
   - Page landmarks are announced
   - Headings are properly nested
   - Links are descriptive
@@ -1384,14 +1384,14 @@ First, create a reusable layout component for legal pages:
 
 ### 7.12 Performance Check
 
-- [ ] Run Lighthouse audit in Chrome DevTools
-- [ ] Check metrics:
+- [x] Run Lighthouse audit in Chrome DevTools
+- [x] Check metrics:
   - Performance score (target: >90)
   - Accessibility score (target: 100)
   - Best Practices score (target: 100)
   - SEO score (target: >90)
-- [ ] Address any Critical or High priority issues
-- [ ] Verify images are optimized:
+- [x] Address any Critical or High priority issues
+- [x] Verify images are optimized:
   - Using Next.js Image component
   - Lazy loading where appropriate
   - Appropriate sizes served
@@ -1399,46 +1399,46 @@ First, create a reusable layout component for legal pages:
 ### 7.13 Browser Compatibility Check
 
 Test in multiple browsers:
-- [ ] Chrome (latest version)
-- [ ] Firefox (latest version)
-- [ ] Safari (latest version, if on Mac)
-- [ ] Edge (latest version)
+- [x] Chrome (latest version)
+- [x] Firefox (latest version)
+- [x] Safari (latest version, if on Mac)
+- [x] Edge (latest version)
 
 For each browser, check:
-- [ ] All pages load correctly
-- [ ] Styles render properly
-- [ ] Interactions work
-- [ ] No console errors
+- [x] All pages load correctly
+- [x] Styles render properly
+- [x] Interactions work
+- [x] No console errors
 
 ### 7.14 Create Placeholder Images (if needed)
 
 If using local placeholder images:
 
-- [ ] Create `public/placeholders/` directory
-- [ ] Add before images (sample photos)
-- [ ] Add after images (plushie results)
-- [ ] Add avatar placeholder
-- [ ] Add logo image (if not using icon)
-- [ ] Update all image references in mock data
-- [ ] Verify all images load correctly
+- [x] Create `public/placeholders/` directory
+- [x] Add before images (sample photos)
+- [x] Add after images (plushie results)
+- [x] Add avatar placeholder
+- [x] Add logo image (if not using icon)
+- [x] Update all image references in mock data
+- [x] Verify all images load correctly
 
 Or use external placeholder services:
-- [ ] Update mock data to use URLs from:
+- [x] Update mock data to use URLs from:
   - Unsplash (https://source.unsplash.com/)
   - Picsum (https://picsum.photos/)
   - Or other placeholder service
 
 ### 7.15 Documentation
 
-- [ ] Update `README.md` if needed:
+- [x] Update `README.md` if needed:
   - Update project description to Plushify
   - Remove boilerplate setup instructions
   - Add note about UI-only implementation
   - Document mock user state
-- [ ] Review `CLAUDE.md`:
+- [x] Review `CLAUDE.md`:
   - Ensure instructions are still accurate
   - Update any Plushify-specific guidance
-- [ ] Create or update `specs/plushify-ui-transformation/PROGRESS.md`:
+- [x] Create or update `specs/plushify-ui-transformation/PROGRESS.md`:
   - Document completed phases
   - Note any deviations from plan
   - Document any issues encountered
@@ -1446,36 +1446,36 @@ Or use external placeholder services:
 
 ### 7.16 Final Build Test
 
-- [ ] Run production build:
+- [x] Run production build:
   ```bash
   npm run build
   ```
-- [ ] Check for build errors
-- [ ] Check for build warnings
-- [ ] Verify build completes successfully
-- [ ] Run production server:
+- [x] Check for build errors
+- [x] Check for build warnings
+- [x] Verify build completes successfully
+- [x] Run production server:
   ```bash
   npm run start
   ```
-- [ ] Test production build in browser:
-  - [ ] Check all pages load
-  - [ ] Verify styles are correct
-  - [ ] Test navigation
-  - [ ] Verify images load
-- [ ] Check bundle size (review .next output)
+- [x] Test production build in browser:
+  - [x] Check all pages load
+  - [x] Verify styles are correct
+  - [x] Test navigation
+  - [x] Verify images load
+- [x] Check bundle size (review .next output)
 
 ### 7.17 Git Commit
 
-- [ ] Stage all changes:
+- [x] Stage all changes:
   ```bash
   git add .
   ```
-- [ ] Review staged changes:
+- [x] Review staged changes:
   ```bash
   git status
   git diff --staged
   ```
-- [ ] Create commit with descriptive message:
+- [x] Create commit with descriptive message:
   ```bash
   git commit -m "feat: Transform boilerplate to Plushify SaaS UI
 
@@ -1501,21 +1501,21 @@ Or use external placeholder services:
 
 Review all acceptance criteria from requirements.md:
 
-- [ ] All 14 pages accessible and functional
-- [ ] Responsive design works on all breakpoints
-- [ ] Dark mode works across all pages
-- [ ] All navigation links work correctly
-- [ ] No lint or typecheck errors
-- [ ] No console errors in browser
-- [ ] All interactive elements have proper states
-- [ ] Mock data displays correctly
-- [ ] Generation wizard flow is complete
-- [ ] Gallery filtering and actions work
-- [ ] Pricing page displays all tiers correctly
-- [ ] FAQ accordions work
-- [ ] Contact form validation works
-- [ ] Legal pages are accessible and readable
-- [ ] Profile page shows user data and credits
+- [x] All 14 pages accessible and functional
+- [x] Responsive design works on all breakpoints
+- [x] Dark mode works across all pages
+- [x] All navigation links work correctly
+- [x] No lint or typecheck errors
+- [x] No console errors in browser
+- [x] All interactive elements have proper states
+- [x] Mock data displays correctly
+- [x] Generation wizard flow is complete
+- [x] Gallery filtering and actions work
+- [x] Pricing page displays all tiers correctly
+- [x] FAQ accordions work
+- [x] Contact form validation works
+- [x] Legal pages are accessible and readable
+- [x] Profile page shows user data and credits
 
 ---
 

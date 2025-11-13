@@ -6,8 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Mail, Calendar, User, Shield, ArrowLeft } from "lucide-react";
+import { CreditDisplay } from "@/components/plushify/credit-display";
+import { mockUser, mockPurchases } from "@/lib/mock-data";
+import { Mail, Calendar, User, Shield, ArrowLeft, CreditCard, TrendingUp } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function ProfilePage() {
   const { data: session, isPending } = useSession();
@@ -153,28 +156,123 @@ export default function ProfilePage() {
           </CardContent>
         </Card>
 
-        {/* Account Activity */}
+        {/* Plan Information */}
         <Card>
           <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
+            <CardTitle>Current Plan</CardTitle>
             <CardDescription>
-              Your recent account activity and sessions
+              Your subscription plan and benefits
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-semibold capitalize">{mockUser.plan} Plan</h3>
+                <p className="text-sm text-muted-foreground">
+                  {mockUser.plan === "basic" && "Perfect for getting started"}
+                  {mockUser.plan === "pro" && "Great for regular users"}
+                  {mockUser.plan === "elite" && "Maximum value and features"}
+                </p>
+              </div>
+              <Badge variant="default" className="capitalize">
+                {mockUser.plan}
+              </Badge>
+            </div>
+            <Separator />
+            <div className="space-y-2">
+              <p className="text-sm font-medium">Plan Benefits:</p>
+              <ul className="text-sm text-muted-foreground space-y-1">
+                <li>✓ HD quality generations</li>
+                <li>✓ Unlimited gallery storage</li>
+                <li>✓ All style options</li>
+                {(mockUser.plan === "pro" || mockUser.plan === "elite") && (
+                  <li>✓ Priority support</li>
+                )}
+              </ul>
+            </div>
+            <div className="flex gap-2">
+              {mockUser.plan !== "elite" && (
+                <Button asChild>
+                  <Link href="/pricing">Upgrade Plan</Link>
+                </Button>
+              )}
+              <Button variant="outline" asChild>
+                <Link href="/pricing">Change Plan</Link>
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Credit Information */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Credits</CardTitle>
+            <CardDescription>
+              Your current credit balance and usage
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex items-center justify-between p-4 border rounded-lg bg-muted/10">
+              <div>
+                <p className="text-sm text-muted-foreground">Current Balance</p>
+                <div className="mt-1">
+                  <CreditDisplay credits={mockUser.credits} size="lg" />
+                </div>
+              </div>
+              <CreditCard className="h-8 w-8 text-muted-foreground" />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-4 border rounded-lg">
+                <p className="text-sm text-muted-foreground">Used This Month</p>
+                <p className="text-2xl font-bold mt-1">15</p>
+              </div>
+              <div className="p-4 border rounded-lg">
+                <p className="text-sm text-muted-foreground">Total Generated</p>
+                <p className="text-2xl font-bold mt-1">42</p>
+              </div>
+            </div>
+            <Button className="w-full" asChild>
+              <Link href="/pricing">Buy More Credits</Link>
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* Purchase History */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Purchase History</CardTitle>
+            <CardDescription>
+              Your recent credit purchases
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 border rounded-lg">
-                <div className="flex items-center space-x-3">
-                  <div className="h-2 w-2 bg-green-500 rounded-full"></div>
-                  <div>
-                    <p className="font-medium">Current Session</p>
-                    <p className="text-sm text-muted-foreground">Active now</p>
+            <div className="space-y-3">
+              {mockPurchases.slice(0, 5).map((purchase) => (
+                <div
+                  key={purchase.id}
+                  className="flex items-center justify-between p-4 border rounded-lg"
+                >
+                  <div className="flex items-center gap-3">
+                    <TrendingUp className="h-5 w-5 text-muted-foreground" />
+                    <div>
+                      <p className="font-medium">{purchase.plan}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {new Date(purchase.date).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-medium">${purchase.amount}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {purchase.credits} credits
+                    </p>
                   </div>
                 </div>
-                <Badge variant="outline" className="text-green-600 border-green-600">
-                  Active
-                </Badge>
-              </div>
+              ))}
             </div>
           </CardContent>
         </Card>
@@ -203,12 +301,14 @@ export default function ProfilePage() {
                   <div className="text-xs text-muted-foreground">Manage security options</div>
                 </div>
               </Button>
-              <Button variant="outline" className="justify-start h-auto p-4" disabled>
-                <Mail className="h-4 w-4 mr-2" />
-                <div className="text-left">
-                  <div className="font-medium">Email Preferences</div>
-                  <div className="text-xs text-muted-foreground">Configure notifications</div>
-                </div>
+              <Button variant="outline" className="justify-start h-auto p-4" asChild>
+                <Link href="/pricing">
+                  <TrendingUp className="h-4 w-4 mr-2" />
+                  <div className="text-left">
+                    <div className="font-medium">Upgrade Plan</div>
+                    <div className="text-xs text-muted-foreground">Get more credits</div>
+                  </div>
+                </Link>
               </Button>
             </div>
             <p className="text-xs text-muted-foreground mt-4">

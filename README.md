@@ -1,90 +1,37 @@
-# Agentic Coding Boilerplate
+# Plushify - Transform Photos into Adorable Plushies
 
-A complete agentic coding boilerplate with authentication, PostgreSQL database, AI chat functionality, and modern UI components - perfect for building AI-powered applications and autonomous agents.
+A modern SaaS application that uses AI to transform photos into adorable plushie-style images. Built with Next.js 15, React 19, TypeScript, and shadcn/ui.
 
-## 🚀 Features
+## 🧸 About This Project
 
-- **🔐 Authentication**: Better Auth with Google OAuth integration
-- **🗃️ Database**: Drizzle ORM with PostgreSQL
-- **🤖 AI Integration**: Vercel AI SDK with OpenRouter (access to 100+ AI models)
-- **🎨 UI Components**: shadcn/ui with Tailwind CSS
-- **⚡ Modern Stack**: Next.js 15, React 19, TypeScript
-- **📱 Responsive**: Mobile-first design approach
+This is a **UI-only implementation** showcasing the complete frontend experience of the Plushify SaaS application. All features use mock data and simulate the user experience without backend integration.
 
-## 🎥 Video Tutorial
+## ✨ Features
 
-Watch the complete walkthrough of this agentic coding template:
-
-[![Agentic Coding Boilerplate Tutorial](https://img.youtube.com/vi/T0zFZsr_d0Q/maxresdefault.jpg)](https://youtu.be/T0zFZsr_d0Q)
-
-<a href="https://youtu.be/T0zFZsr_d0Q" target="_blank" rel="noopener noreferrer">🔗 Watch on YouTube</a>
-
-## ☕ Support This Project
-
-If this boilerplate helped you build something awesome, consider buying me a coffee!
-
-[![Buy me a coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/leonvanzyl)
+- **🎨 Modern UI**: Beautiful, responsive design with shadcn/ui components
+- **🌓 Dark Mode**: Full dark mode support across all pages
+- **📸 Generation Wizard**: Step-by-step plushie creation flow
+- **🖼️ Gallery Management**: View, filter, and manage your creations
+- **💳 Credit System**: Credit-based pricing display
+- **📱 Fully Responsive**: Mobile-first design approach
+- **⚡ Modern Stack**: Next.js 15, React 19, TypeScript, Tailwind CSS
 
 ## 📋 Prerequisites
 
-Before you begin, ensure you have the following installed on your machine:
+Before you begin, ensure you have the following installed:
 
 - **Node.js**: Version 18.0 or higher (<a href="https://nodejs.org/" target="_blank">Download here</a>)
-- **Git**: For cloning the repository (<a href="https://git-scm.com/" target="_blank">Download here</a>)
-- **PostgreSQL**: Either locally installed or access to a hosted service like Vercel Postgres
+- **npm**: Comes with Node.js
 
 ## 🛠️ Quick Setup
 
-### Automated Setup (Recommended)
-
-Get started with a single command:
-
-```bash
-npx create-agentic-app@latest my-app
-cd my-app
-```
-
-Or create in the current directory:
-
-```bash
-npx create-agentic-app@latest .
-```
-
-The CLI will:
-- Copy all boilerplate files
-- Install dependencies with your preferred package manager (pnpm/npm/yarn)
-- Set up your environment file
-
-**Next steps after running the command:**
-
-1. Update `.env` with your API keys and database credentials
-2. Start the database: `docker compose up -d`
-3. Run migrations: `npm run db:migrate`
-4. Start dev server: `npm run dev`
-
-### Manual Setup (Alternative)
-
-If you prefer to set up manually:
-
-**1. Clone or Download the Repository**
-
-**Option A: Clone with Git**
-
-```bash
-git clone https://github.com/leonvanzyl/agentic-coding-starter-kit.git
-cd agentic-coding-starter-kit
-```
-
-**Option B: Download ZIP**
-Download the repository as a ZIP file and extract it to your desired location.
-
-**2. Install Dependencies**
+**1. Install Dependencies**
 
 ```bash
 npm install
 ```
 
-**3. Environment Setup**
+**2. Environment Setup**
 
 Copy the example environment file:
 
@@ -92,7 +39,7 @@ Copy the example environment file:
 cp env.example .env
 ```
 
-Fill in your environment variables in the `.env` file:
+Fill in the required environment variables in the `.env` file:
 
 ```env
 # Database
@@ -105,17 +52,13 @@ BETTER_AUTH_SECRET="your-random-32-character-secret-key-here"
 GOOGLE_CLIENT_ID="your-google-client-id"
 GOOGLE_CLIENT_SECRET="your-google-client-secret"
 
-# AI Integration via OpenRouter (Optional - for chat functionality)
-# Get your API key from: https://openrouter.ai/settings/keys
-# View available models at: https://openrouter.ai/models
-OPENROUTER_API_KEY="sk-or-v1-your-openrouter-api-key-here"
-OPENROUTER_MODEL="openai/gpt-5-mini"
-
-# App URL (for production deployments)
+# App URL
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
 ```
 
-**4. Database Setup**
+**Note**: While the app requires authentication setup, all user data is mocked for the UI demonstration.
+
+**3. Database Setup**
 
 Generate and run database migrations:
 
@@ -124,7 +67,7 @@ npm run db:generate
 npm run db:migrate
 ```
 
-**5. Start the Development Server**
+**4. Start the Development Server**
 
 ```bash
 npm run dev
@@ -132,57 +75,81 @@ npm run dev
 
 Your application will be available at [http://localhost:3000](http://localhost:3000)
 
-## ⚙️ Service Configuration
+## 📄 Pages
 
-### PostgreSQL Database on Vercel
+The application includes 14 fully functional pages:
 
-1. Go to <a href="https://vercel.com/dashboard" target="_blank">Vercel Dashboard</a>
-2. Navigate to the **Storage** tab
-3. Click **Create** → **Postgres**
-4. Choose your database name and region
-5. Copy the `POSTGRES_URL` from the `.env.local` tab
-6. Add it to your `.env` file
+### Main Pages
+- **Landing Page** (`/`): Hero section with before/after showcase
+- **Dashboard** (`/dashboard`): User dashboard with stats and recent generations
+- **Gallery** (`/gallery`): Full gallery with filtering and management
+- **Generate** (`/generate`): Step-by-step wizard for creating plushies
+- **Profile** (`/profile`): User profile with plan and credit information
 
-### Google OAuth Credentials
+### Information Pages
+- **Pricing** (`/pricing`): Credit-based pricing tiers
+- **About** (`/about`): How Plushify works
+- **FAQ** (`/faq`): Frequently asked questions
+- **Contact** (`/contact`): Contact form
 
-1. Go to <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a>
-2. Create a new project or select an existing one
-3. Navigate to **Credentials** → **Create Credentials** → **OAuth 2.0 Client ID**
-4. Set application type to **Web application**
-5. Add authorized redirect URIs:
-   - `http://localhost:3000/api/auth/callback/google` (development)
-   - `https://yourdomain.com/api/auth/callback/google` (production)
-6. Copy the **Client ID** and **Client Secret** to your `.env` file
+### Legal Pages
+- **Privacy Policy** (`/privacy`)
+- **Terms of Service** (`/terms`)
+- **Cookie Policy** (`/cookies`)
+- **Refund Policy** (`/refund`)
 
-### OpenRouter API Key
-
-1. Go to <a href="https://openrouter.ai/" target="_blank">OpenRouter</a>
-2. Sign up or log in to your account
-3. Navigate to **Settings** → **Keys** or visit <a href="https://openrouter.ai/settings/keys" target="_blank">Keys Settings</a>
-4. Click **Create Key** and give it a name
-5. Copy the API key and add it to your `.env` file as `OPENROUTER_API_KEY`
-6. Browse available models at <a href="https://openrouter.ai/models" target="_blank">OpenRouter Models</a>
+### Error Pages
+- **404 Page** (`/not-found`): Custom 404 error page
 
 ## 🗂️ Project Structure
 
 ```
 src/
 ├── app/                    # Next.js app directory
-│   ├── api/               # API routes
-│   │   ├── auth/          # Authentication endpoints
-│   │   └── chat/          # AI chat endpoint
-│   ├── chat/              # AI chat page
+│   ├── about/             # About page
+│   ├── api/auth/          # Authentication endpoints
+│   ├── contact/           # Contact page
+│   ├── cookies/           # Cookie policy
 │   ├── dashboard/         # User dashboard
-│   └── page.tsx           # Home page
-├── components/            # React components
-│   ├── auth/             # Authentication components
-│   └── ui/               # shadcn/ui components
-└── lib/                  # Utilities and configurations
-    ├── auth.ts           # Better Auth configuration
-    ├── auth-client.ts    # Client-side auth utilities
-    ├── db.ts             # Database connection
-    ├── schema.ts         # Database schema
-    └── utils.ts          # General utilities
+│   ├── faq/               # FAQ page
+│   ├── gallery/           # Gallery page
+│   ├── generate/          # Generation wizard
+│   ├── pricing/           # Pricing page
+│   ├── privacy/           # Privacy policy
+│   ├── profile/           # User profile
+│   ├── refund/            # Refund policy
+│   ├── terms/             # Terms of service
+│   ├── not-found.tsx      # 404 page
+│   └── page.tsx           # Landing page
+├── components/
+│   ├── plushify/          # Custom Plushify components
+│   │   ├── before-after-slider.tsx
+│   │   ├── credit-display.tsx
+│   │   ├── filter-bar.tsx
+│   │   ├── gallery-grid.tsx
+│   │   ├── gallery-item.tsx
+│   │   ├── generation-status.tsx
+│   │   ├── generation-wizard.tsx
+│   │   ├── image-uploader.tsx
+│   │   ├── pricing-card.tsx
+│   │   └── user-menu.tsx
+│   ├── ui/                # shadcn/ui components
+│   ├── legal-page-layout.tsx
+│   ├── site-footer.tsx
+│   └── site-header.tsx
+└── lib/
+    ├── mock-data/         # Mock data for UI
+    │   ├── faq-data.ts
+    │   ├── mock-purchases.ts
+    │   ├── mock-user.ts
+    │   ├── pricing-plans.ts
+    │   ├── sample-befores-afters.ts
+    │   └── sample-generations.ts
+    ├── auth.ts            # Better Auth configuration
+    ├── auth-client.ts     # Client-side auth utilities
+    ├── db.ts              # Database connection
+    ├── schema.ts          # Database schema
+    └── utils.ts           # Utility functions
 ```
 
 ## 🔧 Available Scripts
@@ -192,77 +159,87 @@ npm run dev          # Start development server with Turbopack
 npm run build        # Build for production
 npm run start        # Start production server
 npm run lint         # Run ESLint
+npm run typecheck    # Run TypeScript type checking
 npm run db:generate  # Generate database migrations
 npm run db:migrate   # Run database migrations
-npm run db:push      # Push schema changes to database
 npm run db:studio    # Open Drizzle Studio (database GUI)
-npm run db:dev       # Push schema for development
-npm run db:reset     # Reset database (drop all tables)
 ```
 
-## 📖 Pages Overview
+## 🎨 Components
 
-- **Home (`/`)**: Landing page with setup instructions and features overview
-- **Dashboard (`/dashboard`)**: Protected user dashboard with profile information
-- **Chat (`/chat`)**: AI-powered chat interface using OpenRouter (requires authentication)
+### Custom Plushify Components
+- **BeforeAfterSlider**: Interactive image comparison slider
+- **CreditDisplay**: Shows user's credit balance
+- **FilterBar**: Gallery filtering and sorting controls
+- **GalleryGrid**: Responsive grid layout for generations
+- **GalleryItem**: Individual gallery item with actions
+- **GenerationStatus**: Status badge for generations
+- **GenerationWizard**: Multi-step plushie creation flow
+- **ImageUploader**: Drag-and-drop image upload
+- **PricingCard**: Pricing tier display card
+- **UserMenu**: User dropdown menu
+
+### shadcn/ui Components
+All standard shadcn/ui components are available including Button, Card, Input, Select, Accordion, Alert, Progress, Skeleton, Tabs, and more.
+
+## 🚧 Known Limitations
+
+This is a **UI-only implementation**. The following features are simulated with mock data:
+
+- ❌ No actual file upload or image processing
+- ❌ No real AI generation (mock results shown)
+- ❌ No payment processing
+- ❌ No data persistence (all changes reset on refresh)
+- ❌ No email functionality
+- ❌ User always appears signed in
+- ❌ Search functionality is UI-only
+
+## 🔮 Future Development
+
+The following features are planned for backend integration:
+
+1. **Backend API Development**
+   - Real authentication system
+   - Database integration
+   - File upload and storage
+   
+2. **AI Integration**
+   - Real image-to-plushie AI model
+   - Processing queue system
+   - Result caching
+
+3. **Payment System**
+   - Stripe integration
+   - Credit purchase flow
+   - Subscription management
+
+4. **Additional Features**
+   - Email notifications
+   - User settings persistence
+   - Advanced search and filtering
+   - Social sharing
+
+## 📝 Development Notes
+
+- Built with Next.js 15 App Router
+- Uses TypeScript for type safety
+- Tailwind CSS for styling
+- shadcn/ui for component library
+- Mock data system for realistic UI demonstration
+- Fully responsive design
+- Complete dark mode support
 
 ## 🚀 Deployment
 
-### Deploy to Vercel (Recommended)
+This project can be deployed to Vercel, Netlify, or any platform supporting Next.js:
 
-1. Install the Vercel CLI globally:
+```bash
+npm run build
+npm run start
+```
 
-   ```bash
-   npm install -g vercel
-   ```
-
-2. Deploy your application:
-
-   ```bash
-   vercel --prod
-   ```
-
-3. Follow the prompts to configure your deployment
-4. Add your environment variables when prompted or via the Vercel dashboard
-
-### Production Environment Variables
-
-Ensure these are set in your production environment:
-
-- `POSTGRES_URL` - Production PostgreSQL connection string
-- `BETTER_AUTH_SECRET` - Secure random 32+ character string
-- `GOOGLE_CLIENT_ID` - Google OAuth Client ID
-- `GOOGLE_CLIENT_SECRET` - Google OAuth Client Secret
-- `OPENROUTER_API_KEY` - OpenRouter API key (optional, for AI chat functionality)
-- `OPENROUTER_MODEL` - Model name from OpenRouter (optional, defaults to openai/gpt-5-mini)
-- `NEXT_PUBLIC_APP_URL` - Your production domain
-
-## 🎥 Tutorial Video
-
-Watch my comprehensive tutorial on how to use this agentic coding boilerplate to build AI-powered applications:
-
-<a href="https://youtu.be/T0zFZsr_d0Q" target="_blank" rel="noopener noreferrer">📺 YouTube Tutorial - Building with Agentic Coding Boilerplate</a>
-
-## 🤝 Contributing
-
-1. Fork this repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🆘 Need Help?
-
-If you encounter any issues:
-
-1. Check the [Issues](https://github.com/leonvanzyl/agentic-coding-starter-kit/issues) section
-2. Review the documentation above
-3. Create a new issue with detailed information about your problem
+Ensure environment variables are configured in your deployment platform.
 
 ---
 
-**Happy coding! 🚀**
+**Built with ❤️ using Next.js and shadcn/ui**
