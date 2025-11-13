@@ -94,7 +94,6 @@ export default function GalleryPage() {
   }
 
   const handleSearch = (value: string) => {
-    setSearchQuery(value)
     // Search functionality would be implemented here
     console.log("Search query:", value)
   }
