@@ -27,9 +27,9 @@ export default function Home() {
           </div>
 
           {/* Featured Real Example */}
-          <div className="max-w-5xl mx-auto mb-20">
-            <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center rounded-[32px] border border-primary/10 bg-gradient-to-br from-muted/40 via-background to-primary/5 p-6 sm:p-10 shadow-2xl">
-              <div className="space-y-6">
+          <div className="max-w-6xl mx-auto mb-20">
+            <div className="grid gap-10 lg:grid-cols-2 items-center rounded-[32px] border border-primary/10 bg-gradient-to-br from-muted/40 via-background to-primary/5 p-6 sm:p-10 shadow-2xl">
+              <div className="space-y-6 lg:order-1">
                 <span className="inline-flex items-center gap-2 self-start rounded-full bg-primary/15 px-4 py-2 text-sm font-semibold text-primary shadow-sm ring-1 ring-primary/30">
                   <Sparkles className="h-4 w-4" />
                   Featured Creation
@@ -58,13 +58,14 @@ export default function Home() {
                   &quot;{showcaseExamples[0].description}&quot;
                 </p>
               </div>
-              <div className="relative">
+              <div className="relative lg:order-2 w-full max-w-xl mx-auto lg:mx-0">
                 <BeforeAfterSlider
                   beforeImage={showcaseExamples[0].beforeImage}
                   afterImage={showcaseExamples[0].afterImage}
                   beforeAlt="Original photo"
                   afterAlt="AI-generated plushie"
-                  aspect="portrait"
+                  aspect="landscape"
+                  objectFit="cover"
                   className="rounded-3xl border border-white/20 shadow-2xl"
                   priority
                 />
@@ -73,24 +74,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* More Examples Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
-            {showcaseExamples.slice(1).map((example) => (
-              <div key={example.id} className="group space-y-4">
-                <div className="relative aspect-square rounded-xl overflow-hidden border bg-muted shadow-sm group-hover:shadow-lg transition-all duration-300">
-                  <BeforeAfterSlider
-                    beforeImage={example.beforeImage}
-                    afterImage={example.afterImage}
-                    beforeAlt="Original photo"
-                    afterAlt="Plushie transformation"
-                  />
-                </div>
-                <p className="text-sm text-center text-muted-foreground px-2 group-hover:text-primary transition-colors">
-                  {example.description}
-                </p>
-              </div>
-            ))}
-          </div>
+          {/* More Examples Grid - REMOVED as per user request */}
+          
         </div>
       </section>
 

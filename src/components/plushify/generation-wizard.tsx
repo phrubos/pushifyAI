@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -64,6 +64,7 @@ export function GenerationWizard({
   isGenerating = false,
   generationResult = null,
 }: GenerationWizardProps) {
+  const wizardRef = useRef<HTMLDivElement>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [uploadedPreview, setUploadedPreview] = useState<string>("");
@@ -72,6 +73,16 @@ export function GenerationWizard({
   const [progress, setProgress] = useState(0);
   const [processingMessage, setProcessingMessage] = useState(PROCESSING_MESSAGES[0]);
   const [generatedImage, setGeneratedImage] = useState<string>("");
+
+  // Scroll to wizard when step changes or generation starts
+  useEffect(() => {
+    if (wizardRef.current) {
+      // Small delay to ensure content is rendered
+      setTimeout(() => {
+        wizardRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 100);
+    }
+  }, [currentStep, isGenerating]);
 
   // Handle generation result changes
   useEffect(() => {
@@ -152,7 +163,7 @@ export function GenerationWizard({
   };
 
   return (
-    <div className={cn("w-full max-w-4xl mx-auto", className)}>
+    <div ref={wizardRef} className={cn("w-full max-w-4xl mx-auto", className)}>
       {/* Step Indicator */}
       <div className="mb-8 flex items-center justify-center gap-2 sm:gap-4">
         {[1, 2, 3, 4].map((step) => (
@@ -241,7 +252,7 @@ export function GenerationWizard({
                           src={uploadedPreview}
                           alt="Upload preview"
                           fill
-                          className="object-cover"
+                          className="object-contain"
                         />
                       )}
                     </div>
@@ -389,7 +400,7 @@ export function GenerationWizard({
                   </p>
                 </div>
 
-                <div className="rounded-2xl border-4 border-white/10 shadow-2xl">
+                <div className="rounded-2xl border-4 border-white/10 shadow-2xl overflow-hidden">
                   <BeforeAfterSlider
                     beforeImage={
                       generationResult?.originalImageUrl || uploadedPreview
@@ -399,6 +410,9 @@ export function GenerationWizard({
                     }
                     beforeAlt="Original photo"
                     afterAlt="Generated plushie"
+                    aspect="square"
+                    objectFit="contain"
+                    className="bg-muted"
                   />
                 </div>
 
@@ -418,7 +432,7 @@ export function GenerationWizard({
                     className="flex-1"
                     asChild
                   >
-                    <Link href="/gallery">View Gallery</Link>
+                    <Link href="/dashboard">View Dashboard</Link>
                   </Button>
                   <Button size="lg" className="flex-1 gap-2" onClick={handleDownload}>
                     <Download className="h-4 w-4" />

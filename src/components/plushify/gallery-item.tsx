@@ -14,18 +14,10 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import Image from "next/image";
 
-type GenerationStatus = "pending" | "processing" | "completed" | "failed";
+import { InferSelectModel } from "drizzle-orm";
+import { generations } from "@/lib/schema";
 
-interface Generation {
-  id: string;
-  originalImage: string;
-  generatedImage: string;
-  status: GenerationStatus;
-  style: string;
-  size: string;
-  isFavorite: boolean;
-  createdAt: Date;
-}
+type Generation = InferSelectModel<typeof generations>;
 
 interface GalleryItemProps {
   generation: Generation;
@@ -73,12 +65,18 @@ export function GalleryItem({
     >
       {/* Image */}
       <div className="relative aspect-square w-full overflow-hidden bg-muted">
-        <Image
-          src={generation.generatedImage}
-          alt={`Generated plushie ${generation.id}`}
-          fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
-        />
+        {generation.generatedImageUrl ? (
+          <Image
+            src={generation.generatedImageUrl}
+            alt={`Generated plushie ${generation.id}`}
+            fill
+            className="object-contain transition-transform duration-300 group-hover:scale-105"
+          />
+        ) : (
+           <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+              Processing...
+           </div>
+        )}
 
         {/* Favorite indicator */}
         {generation.isFavorite && (

@@ -8,10 +8,11 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check } from "lucide-react";
+import { Check, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface PricingCardProps {
+  id: string;
   name: string;
   price: number;
   credits: number;
@@ -20,9 +21,12 @@ interface PricingCardProps {
   badge?: string;
   isPopular?: boolean;
   className?: string;
+  onCheckout?: (planId: string) => Promise<void>;
+  isLoading?: boolean;
 }
 
 export function PricingCard({
+  id,
   name,
   price,
   credits,
@@ -31,6 +35,8 @@ export function PricingCard({
   badge,
   isPopular = false,
   className,
+  onCheckout,
+  isLoading = false,
 }: PricingCardProps) {
   return (
     <Card
@@ -82,8 +88,17 @@ export function PricingCard({
           className="w-full"
           variant={isPopular ? "default" : "outline"}
           size="lg"
+          onClick={() => onCheckout?.(id)}
+          disabled={isLoading}
         >
-          Choose Plan
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Processing...
+            </>
+          ) : (
+            "Choose Plan"
+          )}
         </Button>
       </CardFooter>
     </Card>

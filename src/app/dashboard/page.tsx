@@ -1,85 +1,45 @@
-"use client"
+import { redirect } from "next/navigation"
+import { auth } from "@/lib/auth"
+import { headers } from "next/headers"
+import { getUserCredits } from "@/app/actions/credits"
+import { getGenerations } from "@/app/actions/generations"
+import { UnifiedDashboardClient } from "@/components/dashboard/unified-dashboard-client"
 
-import { sampleGenerations } from "@/lib/mock-data"
-import { useSession } from "@/lib/auth-client"
-import { useRouter } from "next/navigation"
-import { useEffect } from "react"
-import { DashboardHeader } from "@/components/dashboard/dashboard-header"
-import { StatsCards } from "@/components/dashboard/stats-cards"
-import { ProjectGallery } from "@/components/dashboard/project-gallery"
+export default async function DashboardPage() {
+  // Check authentication
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
-export default function DashboardPage() {
-  const { data: session, isPending } = useSession();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!isPending && !session) {
-      router.push("/sign-in");
-    }
-  }, [session, isPending, router]);
-
-  if (isPending) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-pulse space-y-4">
-          <div className="h-8 w-48 bg-muted rounded" />
-          <div className="h-4 w-32 bg-muted rounded" />
-        </div>
-      </div>
-    );
-  }
-
-  if (!session) {
-    return null;
+  if (!session?.user) {
+    redirect("/sign-in");
   }
 
   const user = session.user;
-  const credits = 42;
   
-  // Get recent 6 generations
-  const recentGenerations = sampleGenerations.slice(0, 6)
+  // Fetch user credits and all generations
+  const credits = await getUserCredits();
+  const allGenerations = await getGenerations(20, 0);
 
   // Calculate stats
-  const totalGenerations = sampleGenerations.length
-  const favoriteCount = sampleGenerations.filter((g) => g.isFavorite).length
-  const completedCount = sampleGenerations.filter(
+  const totalGenerations = allGenerations.length;
+  const favoriteCount = allGenerations.filter((g) => g.isFavorite).length;
+  const completedCount = allGenerations.filter(
     (g) => g.status === "completed"
-  ).length
+  ).length;
+  const processingCount = allGenerations.filter(
+    (g) => g.status === "processing"
+  ).length;
 
   return (
-    <div className="min-h-screen bg-muted/20">
-      <div className="container mx-auto px-4 py-8 space-y-10">
-        <DashboardHeader user={user} credits={credits} />
-        
-        <StatsCards 
-          totalGenerations={totalGenerations}
-          completedCount={completedCount}
-          favoriteCount={favoriteCount}
-          credits={credits}
-        />
-
-        <ProjectGallery
-          generations={recentGenerations}
-          onDownload={(id) => {
-            console.log("Download:", id);
-            // TODO: Implement download functionality
-          }}
-          onDelete={(id) => {
-            console.log("Delete:", id);
-            // TODO: Implement delete functionality
-          }}
-          onFavorite={(id) => {
-            console.log("Favorite:", id);
-            // TODO: Implement favorite toggle
-          }}
-          onViewOriginal={(id) => {
-            const generation = recentGenerations.find((g) => g.id === id);
-            if (generation) {
-              window.open(generation.originalImage, "_blank");
-            }
-          }}
-        />
-      </div>
-    </div>
+    <UnifiedDashboardClient
+      user={user}
+      credits={credits}
+      initialGenerations={allGenerations}
+      totalGenerations={totalGenerations}
+      favoriteCount={favoriteCount}
+      completedCount={completedCount}
+      processingCount={processingCount}
+    />
   )
 }

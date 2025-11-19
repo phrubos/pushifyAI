@@ -29,6 +29,14 @@ export function SiteHeader() {
 
         {/* Navigation Links */}
         <nav className="hidden md:flex items-center gap-6">
+          {session?.user && (
+            <Link
+              href="/dashboard"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Dashboard
+            </Link>
+          )}
           <Link
             href="/about"
             className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"

@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ImageIcon, Heart, Sparkles } from "lucide-react";
+import { ImageIcon, Heart, Sparkles, Loader2 } from "lucide-react";
 import { motion } from "motion/react";
 
 interface StatsCardsProps {
@@ -9,9 +9,16 @@ interface StatsCardsProps {
   completedCount: number;
   favoriteCount: number;
   credits: number;
+  processingCount?: number;
 }
 
-export function StatsCards({ totalGenerations, completedCount, favoriteCount, credits }: StatsCardsProps) {
+export function StatsCards({ 
+  totalGenerations, 
+  completedCount, 
+  favoriteCount, 
+  credits,
+  processingCount = 0 
+}: StatsCardsProps) {
   const stats = [
     {
       title: "Total Creations",
@@ -22,12 +29,12 @@ export function StatsCards({ totalGenerations, completedCount, favoriteCount, cr
       bg: "bg-blue-500/10",
     },
     {
-      title: "Credits Available",
-      value: credits,
-      description: "Top up anytime",
+      title: "Completed",
+      value: completedCount,
+      description: `${totalGenerations > 0 ? Math.round((completedCount / totalGenerations) * 100) : 0}% success rate`,
       icon: Sparkles,
-      color: "text-amber-500",
-      bg: "bg-amber-500/10",
+      color: "text-green-500",
+      bg: "bg-green-500/10",
     },
     {
       title: "Favorites",
@@ -37,10 +44,18 @@ export function StatsCards({ totalGenerations, completedCount, favoriteCount, cr
       color: "text-pink-500",
       bg: "bg-pink-500/10",
     },
+    {
+      title: "Credits",
+      value: credits,
+      description: processingCount > 0 ? `${processingCount} processing` : "Ready to create",
+      icon: Sparkles,
+      color: "text-amber-500",
+      bg: "bg-amber-500/10",
+    },
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {stats.map((stat, index) => (
         <motion.div
           key={stat.title}

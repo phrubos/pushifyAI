@@ -171,73 +171,73 @@
 ## Phase 7: Gallery Page Integration
 
 ### Tasks
-- [ ] Update `src/app/gallery/page.tsx`
-- [ ] Remove mock data imports (`sampleGenerations`)
-- [ ] Add server-side session check and redirect if not authenticated
-- [ ] Create `getGenerations()` server action in `src/app/actions/generations.ts`:
-  - [ ] Query generations table for authenticated user
-  - [ ] Order by createdAt descending
-  - [ ] Add pagination support (limit 20, offset parameter)
-  - [ ] Return generations array
-- [ ] Fetch real generations data in page component
-- [ ] Implement `handleDelete(id: string)` server action:
-  - [ ] Get generation by ID
-  - [ ] Verify ownership (userId matches session)
-  - [ ] Delete original image from blob storage
-  - [ ] Delete generated image from blob storage
-  - [ ] Delete generation record from database
-  - [ ] Revalidate gallery page
-- [ ] Implement `toggleFavorite(id: string)` server action:
-  - [ ] Get generation by ID
-  - [ ] Verify ownership
-  - [ ] Toggle `isFavorite` field in database
-  - [ ] Revalidate gallery page
-- [ ] Implement `handleDownload(imageUrl: string)` client-side function:
-  - [ ] Fetch image from blob URL
-  - [ ] Create blob and download link
-  - [ ] Trigger download
-- [ ] Implement search functionality:
-  - [ ] Add client-side filtering by search term
-  - [ ] Filter by matching prompt or generation ID
-- [ ] Implement filter functionality:
-  - [ ] Filter by status (client-side)
-  - [ ] Sort by newest/oldest/favorites (client-side)
-- [ ] Add pagination controls:
-  - [ ] Track current page in state
-  - [ ] Load more button or infinite scroll
-- [ ] Add empty states for no generations
-- [ ] Add loading skeletons during data fetch
-- [ ] Test all gallery operations (delete, favorite, download, filter)
+- [x] Update `src/app/gallery/page.tsx`
+- [x] Remove mock data imports (`sampleGenerations`)
+- [x] Add server-side session check and redirect if not authenticated
+- [x] Create `getGenerations()` server action in `src/app/actions/generations.ts`:
+  - [x] Query generations table for authenticated user
+  - [x] Order by createdAt descending
+  - [x] Add pagination support (limit 20, offset parameter)
+  - [x] Return generations array
+- [x] Fetch real generations data in page component
+- [x] Implement `handleDelete(id: string)` server action:
+  - [x] Get generation by ID
+  - [x] Verify ownership (userId matches session)
+  - [x] Delete original image from blob storage
+  - [x] Delete generated image from blob storage
+  - [x] Delete generation record from database
+  - [x] Revalidate gallery page
+- [x] Implement `toggleFavorite(id: string)` server action:
+  - [x] Get generation by ID
+  - [x] Verify ownership
+  - [x] Toggle `isFavorite` field in database
+  - [x] Revalidate gallery page
+- [x] Implement `handleDownload(imageUrl: string)` client-side function:
+  - [x] Fetch image from blob URL
+  - [x] Create blob and download link
+  - [x] Trigger download
+- [x] Implement search functionality:
+  - [x] Add client-side filtering by search term
+  - [x] Filter by matching prompt or generation ID
+- [x] Implement filter functionality:
+  - [x] Filter by status (client-side)
+  - [x] Sort by newest/oldest/favorites (client-side)
+- [x] Add pagination controls:
+  - [x] Track current page in state
+  - [x] Load more button or infinite scroll
+- [x] Add empty states for no generations
+- [x] Add loading skeletons during data fetch
+- [x] Test all gallery operations (delete, favorite, download, filter)
 
 ---
 
 ## Phase 8: Credit Purchase System (Polar Integration)
 
 ### Tasks
-- [ ] Create `src/app/actions/polar.ts` for Polar-related actions
-- [ ] Implement `createCheckoutSession(creditsPackage: string)` server action:
-  - [ ] Get authenticated user
-  - [ ] Map package to Polar product ID and price
-  - [ ] Create Polar checkout session
-  - [ ] Add user ID to checkout metadata
-  - [ ] Return checkout URL
-- [ ] Update `src/app/pricing/page.tsx`:
-  - [ ] Define credit packages (50/$4.99, 200/$14.99, 500/$29.99)
-  - [ ] Add "Buy Now" buttons for each package
-  - [ ] Call `createCheckoutSession()` on button click
-  - [ ] Redirect to Polar checkout URL
-- [ ] Create/Update `src/app/api/webhooks/polar/route.ts`:
-  - [ ] Verify Polar webhook signature
-  - [ ] Handle `checkout.completed` event
-  - [ ] Extract user ID from metadata
-  - [ ] Extract credits amount from product
-  - [ ] Add credits to user account
-  - [ ] Create transaction record with type 'purchase'
-  - [ ] Return 200 response
-- [ ] Add purchase history to user profile/dashboard:
-  - [ ] Create `getTransactionHistory(userId: string)` action
-  - [ ] Filter by type 'purchase'
-  - [ ] Display in table format with date, amount, credits
+- [x] Create `src/app/actions/polar.ts` for Polar-related actions
+- [x] Implement `createCheckoutSession(creditsPackage: string)` server action:
+  - [x] Get authenticated user
+  - [x] Map package to Polar product ID and price
+  - [x] Create Polar checkout session
+  - [x] Add user ID to checkout metadata
+  - [x] Return checkout URL
+- [x] Update `src/app/pricing/page.tsx`:
+  - [x] Define credit packages (50/$4.99, 200/$14.99, 500/$29.99)
+  - [x] Add "Buy Now" buttons for each package
+  - [x] Call `createCheckoutSession()` on button click
+  - [x] Redirect to Polar checkout URL
+- [x] Create/Update `src/app/api/webhooks/polar/route.ts`:
+  - [x] Verify Polar webhook signature
+  - [x] Handle `checkout.completed` event
+  - [x] Extract user ID from metadata
+  - [x] Extract credits amount from product
+  - [x] Add credits to user account
+  - [x] Create transaction record with type 'purchase'
+  - [x] Return 200 response
+- [x] Add purchase history to user profile/dashboard:
+  - [x] Create `getTransactionHistory(userId: string)` action
+  - [x] Filter by type 'purchase'
+  - [x] Display in table format with date, amount, credits
 - [ ] Test checkout flow end-to-end:
   - [ ] Create test checkout
   - [ ] Verify webhook receives event
@@ -249,40 +249,40 @@
 ## Phase 9: Admin Credit Management
 
 ### Tasks
-- [ ] Create `src/middleware/admin.ts`:
-  - [ ] Check if authenticated user exists in admin_users table
-  - [ ] Export `requireAdmin()` function for server actions
-- [ ] Create `src/app/admin/credits/page.tsx`:
-  - [ ] Add authentication check (redirect if not signed in)
-  - [ ] Add admin authorization check (show 403 if not admin)
-  - [ ] Create search form for finding users by email
-  - [ ] Display user credit balance when found
-  - [ ] Add form to add/remove credits with reason field
-  - [ ] Display transaction history for selected user
-- [ ] Create `src/app/actions/admin.ts`:
-  - [ ] Implement `searchUsers(email: string)` (admin only)
-    - [ ] Verify admin using `requireAdmin()`
-    - [ ] Query users table by email (case-insensitive partial match)
-    - [ ] Return users array with id, email, credits
-  - [ ] Implement `adminAddCredits(userId, amount, reason)` (admin only)
-    - [ ] Verify admin
-    - [ ] Call `addCredits()` from credits actions
-    - [ ] Return success/error
-  - [ ] Implement `adminRemoveCredits(userId, amount, reason)` (admin only)
-    - [ ] Verify admin
-    - [ ] Call `deductCredits()` but allow admin to deduct even if insufficient
-    - [ ] Log with type 'admin' and reason in metadata
-  - [ ] Implement `getTransactionHistory(userId: string)` (admin only)
-    - [ ] Verify admin
-    - [ ] Query transactions table for user
-    - [ ] Order by createdAt descending
-    - [ ] Return transactions array
-- [ ] Seed admin user:
-  - [ ] Get your user ID from database
-  - [ ] Insert into admin_users table with role 'admin'
-  - [ ] Verify admin access works
-- [ ] Style admin panel with Tailwind + shadcn/ui components
-- [ ] Add error handling and validation
+- [x] Create `src/middleware/admin.ts`:
+  - [x] Check if authenticated user exists in admin_users table
+  - [x] Export `requireAdmin()` function for server actions
+- [x] Create `src/app/admin/credits/page.tsx`:
+  - [x] Add authentication check (redirect if not signed in)
+  - [x] Add admin authorization check (show 403 if not admin)
+  - [x] Create search form for finding users by email
+  - [x] Display user credit balance when found
+  - [x] Add form to add/remove credits with reason field
+  - [x] Display transaction history for selected user
+- [x] Create `src/app/actions/admin.ts`:
+  - [x] Implement `searchUsers(email: string)` (admin only)
+    - [x] Verify admin using `requireAdmin()`
+    - [x] Query users table by email (case-insensitive partial match)
+    - [x] Return users array with id, email, credits
+  - [x] Implement `adminAddCredits(userId, amount, reason)` (admin only)
+    - [x] Verify admin
+    - [x] Call `addCredits()` from credits actions
+    - [x] Return success/error
+  - [x] Implement `adminRemoveCredits(userId, amount, reason)` (admin only)
+    - [x] Verify admin
+    - [x] Call `deductCredits()` but allow admin to deduct even if insufficient
+    - [x] Log with type 'admin' and reason in metadata
+  - [x] Implement `getTransactionHistory(userId: string)` (admin only)
+    - [x] Verify admin
+    - [x] Query transactions table for user
+    - [x] Order by createdAt descending
+    - [x] Return transactions array
+- [x] Seed admin user:
+  - [x] Get your user ID from database
+  - [x] Insert into admin_users table with role 'admin'
+  - [x] Verify admin access works
+- [x] Style admin panel with Tailwind + shadcn/ui components
+- [x] Add error handling and validation
 - [ ] Test all admin operations
 
 ---
@@ -290,45 +290,45 @@
 ## Phase 10: Error Handling, Polish & Quality Assurance
 
 ### Tasks
-- [ ] Add loading states:
-  - [ ] Generate page: Show spinner during generation
-  - [ ] Gallery page: Show skeletons while loading
-  - [ ] Admin page: Show loading on search/updates
-- [ ] Implement error boundaries:
-  - [ ] Wrap GenerationWizard in error boundary
-  - [ ] Wrap Gallery grid in error boundary
-  - [ ] Show user-friendly error fallbacks
-- [ ] Add Sonner toast notifications:
-  - [ ] Success: "Image generated successfully! 🎉"
-  - [ ] Error: "Insufficient credits" with action button → /pricing
-  - [ ] Error: "Generation failed, credit refunded"
-  - [ ] Success: "Credits purchased!"
-  - [ ] Success: "Image deleted"
-  - [ ] Success: "Favorited!"
-- [ ] Implement optimistic UI updates:
-  - [ ] Gallery: Update UI immediately on favorite toggle
-  - [ ] Credits: Show deducted amount before server confirms
+- [x] Add loading states:
+  - [x] Generate page: Show spinner during generation
+  - [x] Gallery page: Show skeletons while loading
+  - [x] Admin page: Show loading on search/updates
+- [x] Implement error boundaries:
+  - [x] Wrap GenerationWizard in error boundary
+  - [x] Wrap Gallery grid in error boundary
+  - [x] Show user-friendly error fallbacks
+- [x] Add Sonner toast notifications:
+  - [x] Success: "Image generated successfully! 🎉"
+  - [x] Error: "Insufficient credits" with action button → /pricing
+  - [x] Error: "Generation failed, credit refunded"
+  - [x] Success: "Credits purchased!"
+  - [x] Success: "Image deleted"
+  - [x] Success: "Favorited!"
+- [x] Implement optimistic UI updates:
+  - [x] Gallery: Update UI immediately on favorite toggle
+  - [x] Credits: Show deducted amount before server confirms
 - [ ] Add retry logic:
   - [ ] Retry failed blob storage uploads
   - [ ] Handle rate limits gracefully
-- [ ] Add input validation:
-  - [ ] File type validation (JPG/PNG only)
-  - [ ] File size validation (max 10MB)
-  - [ ] Form validation for admin panel
-- [ ] Run quality checks:
-  - [ ] `npm run lint` - fix all linting errors
-  - [ ] `npm run typecheck` - fix all TypeScript errors
+- [x] Add input validation:
+  - [x] File type validation (JPG/PNG only)
+  - [x] File size validation (max 10MB)
+  - [x] Form validation for admin panel
+- [x] Run quality checks:
+  - [x] `npm run lint` - fix all linting errors
+  - [x] `npm run typecheck` - fix all TypeScript errors
   - [ ] Manual testing of all user flows
   - [ ] Test on mobile devices (responsive design)
 - [ ] Update documentation:
   - [ ] Add comments to complex functions
   - [ ] Update README with new features
   - [ ] Document environment variables
-- [ ] Security review:
-  - [ ] Verify all server actions check authentication
-  - [ ] Verify admin actions check authorization
-  - [ ] Review blob storage access controls
-  - [ ] Verify webhook signature validation
+- [x] Security review:
+  - [x] Verify all server actions check authentication
+  - [x] Verify admin actions check authorization
+  - [x] Review blob storage access controls
+  - [x] Verify webhook signature validation
 - [ ] Performance optimization:
   - [ ] Add database indexes if slow
   - [ ] Optimize image loading (Next.js Image component)

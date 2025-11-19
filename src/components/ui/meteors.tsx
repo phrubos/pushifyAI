@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
-import React from "react";
+import React, { useMemo, useState, useEffect } from "react";
 
 export const Meteors = ({
   number,
@@ -10,7 +10,31 @@ export const Meteors = ({
   number?: number;
   className?: string;
 }) => {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const meteors = new Array(number || 20).fill(true);
+  
+  // Generate random values only on client side after mount
+  const meteorStyles = useMemo(() => {
+    if (!mounted) {
+      // Return consistent values for SSR
+      return meteors.map((_, idx) => ({
+        delay: (idx * 0.5) % 5,
+        duration: 5 + (idx % 5),
+      }));
+    }
+    
+    // Generate random values on client
+    return meteors.map(() => ({
+      delay: Math.random() * 5,
+      duration: Math.floor(Math.random() * (10 - 5) + 5),
+    }));
+  }, [mounted, meteors.length]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -31,10 +55,10 @@ export const Meteors = ({
               className,
             )}
             style={{
-              top: "-40px", // Start above the container
+              top: "-40px",
               left: position + "px",
-              animationDelay: Math.random() * 5 + "s", // Random delay between 0-5s
-              animationDuration: Math.floor(Math.random() * (10 - 5) + 5) + "s", // Keep some randomness in duration
+              animationDelay: meteorStyles[idx].delay + "s",
+              animationDuration: meteorStyles[idx].duration + "s",
             }}
           ></span>
         );

@@ -11,11 +11,11 @@ export interface PricingPlan {
 
 export const pricingPlans: PricingPlan[] = [
   {
-    id: "plan_basic",
-    name: "Basic",
-    price: 9,
-    credits: 30,
-    pricePerCredit: 0.3,
+    id: "plan_starter",
+    name: "Starter",
+    price: 4.99,
+    credits: 50,
+    pricePerCredit: 0.10,
     features: [
       "HD quality generations",
       "Unlimited gallery storage",
@@ -26,9 +26,9 @@ export const pricingPlans: PricingPlan[] = [
   {
     id: "plan_pro",
     name: "Pro",
-    price: 19,
-    credits: 100,
-    pricePerCredit: 0.19,
+    price: 14.99,
+    credits: 200,
+    pricePerCredit: 0.075,
     features: [
       "HD quality generations",
       "Unlimited gallery storage",
@@ -40,11 +40,11 @@ export const pricingPlans: PricingPlan[] = [
     isPopular: true,
   },
   {
-    id: "plan_elite",
-    name: "Elite",
-    price: 29,
-    credits: 200,
-    pricePerCredit: 0.145,
+    id: "plan_ultimate",
+    name: "Ultimate",
+    price: 29.99,
+    credits: 500,
+    pricePerCredit: 0.06,
     features: [
       "HD quality generations",
       "Unlimited gallery storage",

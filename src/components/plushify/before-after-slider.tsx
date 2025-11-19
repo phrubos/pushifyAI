@@ -15,6 +15,7 @@ interface BeforeAfterSliderProps {
   className?: string;
   aspect?: SliderAspect;
   priority?: boolean;
+  objectFit?: "cover" | "contain";
 }
 
 export function BeforeAfterSlider({
@@ -25,6 +26,7 @@ export function BeforeAfterSlider({
   className,
   aspect = "square",
   priority = false,
+  objectFit = "contain",
 }: BeforeAfterSliderProps) {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
@@ -85,16 +87,22 @@ export function BeforeAfterSlider({
 
   const aspectClasses: Record<SliderAspect, string> = {
     square: "aspect-square",
-    portrait: "aspect-[4/5]",
+    portrait: "aspect-[3/4]",
     landscape: "aspect-[4/3]",
   };
+
+  const objectFitClass = objectFit === "cover" ? "object-cover" : "object-contain";
+  
+  // Don't apply aspect ratio if className contains height classes
+  const hasHeightClass = className?.includes("h-") || className?.includes("min-h-") || className?.includes("max-h-");
+  const aspectClass = hasHeightClass ? "" : aspectClasses[aspect];
 
   return (
     <div
       ref={containerRef}
       className={cn(
         "group relative w-full cursor-ew-resize overflow-hidden rounded-lg select-none focus:outline-none focus:ring-2 focus:ring-primary/50",
-        aspectClasses[aspect],
+        aspectClass,
         className
       )}
       onMouseDown={handleMouseDown}
@@ -108,12 +116,12 @@ export function BeforeAfterSlider({
       aria-valuemax={100}
     >
       {/* After Image (Background) */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 bg-muted">
         <Image
           src={afterImage}
           alt={afterAlt}
           fill
-          className="object-cover"
+          className={objectFitClass}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           priority={priority}
           quality={90}
@@ -125,14 +133,14 @@ export function BeforeAfterSlider({
 
       {/* Before Image (Clipped) */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 bg-muted"
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
       >
         <Image
           src={beforeImage}
           alt={beforeAlt}
           fill
-          className="object-cover"
+          className={objectFitClass}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           priority={priority}
           quality={90}

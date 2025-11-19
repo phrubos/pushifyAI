@@ -1,20 +1,23 @@
 "use client";
 
-import { useState, useRef, ChangeEvent, DragEvent } from "react";
+import { useState, useRef, ChangeEvent, DragEvent, useCallback } from "react";
 import Image from "next/image";
 import { Upload, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { validateImageFile } from "@/lib/validation";
 import { toast } from "sonner";
 
 interface ImageUploaderProps {
-  onImageSelect: (file: File, preview: string) => void;
+  onImageSelect?: (file: File, preview: string) => void;
   className?: string;
+  maxSizeMB?: number;
 }
 
 export function ImageUploader({
   onImageSelect,
   className,
+  maxSizeMB = 10,
 }: ImageUploaderProps) {
   const [preview, setPreview] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -28,31 +31,37 @@ export function ImageUploader({
     return (bytes / (1024 * 1024)).toFixed(1) + " MB";
   };
 
-  const handleFile = (file: File) => {
-    // Validate file type
-    if (!file.type.match(/^image\/(jpeg|jpg|png)$/)) {
-      toast.error("Please upload a JPG or PNG image");
-      return;
-    }
+  const handleFile = useCallback(
+    (file: File) => {
+      // Validate file
+      const validation = validateImageFile(file);
+      if (!validation.valid) {
+        toast.error("Invalid file", {
+          description: validation.error,
+        });
+        return;
+      }
 
-    // Validate file size (max 10MB)
-    if (file.size > 10 * 1024 * 1024) {
-      toast.error("File size must be less than 10MB");
-      return;
-    }
+      // Validate file size (max 10MB)
+      if (file.size > maxSizeMB * 1024 * 1024) {
+        toast.error("File size must be less than " + maxSizeMB + "MB");
+        return;
+      }
 
-    setFileName(file.name);
-    setFileSize(formatFileSize(file.size));
+      setFileName(file.name);
+      setFileSize(formatFileSize(file.size));
 
-    // Create preview
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const previewUrl = reader.result as string;
-      setPreview(previewUrl);
-      onImageSelect(file, previewUrl);
-    };
-    reader.readAsDataURL(file);
-  };
+      // Create preview
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const previewUrl = reader.result as string;
+        setPreview(previewUrl);
+        onImageSelect?.(file, previewUrl);
+      };
+      reader.readAsDataURL(file);
+    },
+    [onImageSelect, maxSizeMB]
+  );
 
   const handleFileSelect = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -102,7 +111,7 @@ export function ImageUploader({
             src={preview}
             alt="Upload preview"
             fill
-            className="object-cover"
+            className="object-contain"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>

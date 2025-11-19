@@ -54,12 +54,6 @@ export function UserMenu({ user }: UserMenuProps) {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href="/gallery" className="cursor-pointer">
-            <ImageIcon className="mr-2 h-4 w-4" />
-            Gallery
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild>
           <Link href="/profile" className="cursor-pointer">
             <User className="mr-2 h-4 w-4" />
             Profile

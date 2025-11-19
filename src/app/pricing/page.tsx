@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button"
-import { PricingCard } from "@/components/plushify/pricing-card"
+import { PricingSection } from "@/components/plushify/pricing-section"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { pricingPlans, faqData } from "@/lib/mock-data"
+import { faqData } from "@/lib/mock-data"
 
 export default function PricingPage() {
   // Filter pricing-related FAQs
@@ -32,20 +32,7 @@ export default function PricingPage() {
       </div>
 
       {/* Pricing Cards Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        {pricingPlans.map((plan) => (
-          <PricingCard
-            key={plan.id}
-            name={plan.name}
-            price={plan.price}
-            credits={plan.credits}
-            pricePerCredit={plan.pricePerCredit}
-            features={plan.features}
-            badge={plan.badge}
-            isPopular={plan.isPopular}
-          />
-        ))}
-      </div>
+      <PricingSection />
 
       {/* Features Comparison */}
       <div className="mb-16">
