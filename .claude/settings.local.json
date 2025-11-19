@@ -15,7 +15,16 @@
       "Bash(test:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\nfeat: complete Phase 2 core Plushify UI components\n\nComplete the second phase of Plushify UI transformation by adding all\nremaining core components needed for the gallery, filtering, and image\ngeneration workflow.\n\n## New Components Added\n\n### Gallery Components\n- gallery-item.tsx: Individual gallery item card with hover overlay\n  - Displays generated plushie image with status badge\n  - Interactive hover overlay with action buttons (download, delete, favorite, view)\n  - Favorite indicator with star icon\n  - Formatted date display with relative time\n  - Responsive image loading with Next.js Image component\n\n- gallery-grid.tsx: Responsive grid layout for gallery items\n  - 1-4 column responsive grid (mobile to desktop)\n  - Empty state handling with friendly message\n  - Passes action handlers to individual items\n  - Clean props interface for easy integration\n\n### Filter & Search\n- filter-bar.tsx: Advanced filtering and search interface\n  - Sort dropdown (newest, oldest, favorites)\n  - Status filter dropdown (all, completed, processing, failed)\n  - Search input with icon\n  - Fully responsive layout (stacks on mobile)\n  - Proper callback props for parent state management\n\n### Generation Workflow\n- generation-wizard.tsx: 4-step wizard for plushie generation\n  - Step 1: Image upload with drag-and-drop support\n  - Step 2: Style selection (cute/realistic/cartoon) and size options\n  - Step 3: Processing animation with progress bar and status messages\n  - Step 4: Result display with before/after slider\n  - Visual step indicator showing progress\n  - Mock generation simulation with realistic timing\n  - Action buttons for download, generate another, view gallery\n\n## Bug Fixes & Improvements\n\n- Fixed React hooks exhaustive-deps warning in before-after-slider.tsx\n- Fixed TypeScript type errors in generation-status.tsx by adding animate property\n- Removed unused imports from generation-wizard.tsx\n- All components now pass lint and typecheck with zero errors\n\n## Technical Details\n\n- All components use TypeScript with proper type definitions\n- Client components marked with \"use client\" directive where needed\n- Consistent styling with Tailwind CSS and shadcn/ui patterns\n- Proper prop interfaces for type safety\n- Mock data integration ready for Phase 3\n- Responsive design patterns throughout\n- Dark mode support maintained\n\n## Verification\n\n- npm run lint: ✅ 0 errors, 0 warnings\n- npm run typecheck: ✅ 0 TypeScript errors\n- All components exported via index.ts\n\nPhase 2 Status: Complete (13/13 tasks finished)\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(git commit:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "WebSearch",
+      "WebFetch(domain:openrouter.ai)",
+      "WebFetch(domain:ai-sdk.dev)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:generativeai.pub)",
+      "Bash(npm run db:generate:*)",
+      "Bash(npm run db:migrate:*)",
+      "Bash(pnpm add:*)",
+      "Bash(npm install:*)"
     ],
     "additionalDirectories": [
       "C:\\c\\Projects\\nextjs-better-auth-postgresql-starter-kit"

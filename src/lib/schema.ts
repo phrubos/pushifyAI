@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, boolean } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, boolean, integer, pgEnum, jsonb, index } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
@@ -6,6 +6,7 @@ export const user = pgTable("user", {
   email: text("email").notNull().unique(),
   emailVerified: boolean("email_verified").default(false).notNull(),
   image: text("image"),
+  credits: integer("credits").default(10).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()
@@ -58,4 +59,99 @@ export const verification = pgTable("verification", {
     .defaultNow()
     .$onUpdate(() => /* @__PURE__ */ new Date())
     .notNull(),
+});
+
+// Enums for generations table
+export const generationStatusEnum = pgEnum("generation_status", [
+  "pending",
+  "processing",
+  "completed",
+  "failed",
+]);
+
+export const generationStyleEnum = pgEnum("generation_style", [
+  "cute",
+  "realistic",
+  "cartoon",
+]);
+
+export const generationSizeEnum = pgEnum("generation_size", [
+  "small",
+  "medium",
+  "large",
+]);
+
+// Generations table
+export const generations = pgTable(
+  "generations",
+  {
+    id: text("id").primaryKey(),
+    userId: text("user_id")
+      .notNull()
+      .references(() => user.id, { onDelete: "cascade" }),
+    originalImageUrl: text("original_image_url").notNull(),
+    generatedImageUrl: text("generated_image_url"),
+    status: generationStatusEnum("status").default("pending").notNull(),
+    style: generationStyleEnum("style").notNull(),
+    size: generationSizeEnum("size").notNull(),
+    isFavorite: boolean("is_favorite").default(false).notNull(),
+    prompt: text("prompt"),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at")
+      .defaultNow()
+      .$onUpdate(() => /* @__PURE__ */ new Date())
+      .notNull(),
+  },
+  (table) => ({
+    userIdIdx: index("generations_user_id_idx").on(table.userId),
+    statusIdx: index("generations_status_idx").on(table.status),
+    createdAtIdx: index("generations_created_at_idx").on(table.createdAt),
+  })
+);
+
+// Enums for transactions table
+export const transactionTypeEnum = pgEnum("transaction_type", [
+  "purchase",
+  "bonus",
+  "admin",
+  "deduction",
+  "refund",
+]);
+
+export const transactionStatusEnum = pgEnum("transaction_status", [
+  "pending",
+  "completed",
+  "failed",
+]);
+
+// Transactions table
+export const transactions = pgTable(
+  "transactions",
+  {
+    id: text("id").primaryKey(),
+    userId: text("user_id")
+      .notNull()
+      .references(() => user.id, { onDelete: "cascade" }),
+    amount: integer("amount").notNull(),
+    credits: integer("credits").notNull(),
+    type: transactionTypeEnum("type").notNull(),
+    status: transactionStatusEnum("status").default("completed").notNull(),
+    metadata: jsonb("metadata"),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    userIdIdx: index("transactions_user_id_idx").on(table.userId),
+    createdAtIdx: index("transactions_created_at_idx").on(table.createdAt),
+  })
+);
+
+// Admin users table
+export const adminRoleEnum = pgEnum("admin_role", ["admin", "super_admin"]);
+
+export const adminUsers = pgTable("admin_users", {
+  userId: text("user_id")
+    .primaryKey()
+    .references(() => user.id, { onDelete: "cascade" }),
+  role: adminRoleEnum("role").default("admin").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
 });
