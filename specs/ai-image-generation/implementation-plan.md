@@ -3,168 +3,168 @@
 ## Phase 1: Database Schema & Migrations
 
 ### Tasks
-- [ ] Add `credits` field to user table (integer, default 10, notNull)
-- [ ] Create `generations` table with all required fields
-  - [ ] id, userId (foreign key to user)
-  - [ ] originalImageUrl, generatedImageUrl (text, nullable for generated)
-  - [ ] status enum ('pending', 'processing', 'completed', 'failed')
-  - [ ] style enum ('cute', 'realistic', 'cartoon')
-  - [ ] size enum ('small', 'medium', 'large')
-  - [ ] isFavorite (boolean, default false)
-  - [ ] prompt (text, nullable)
-  - [ ] createdAt, updatedAt timestamps
-- [ ] Create `transactions` table for credit history
-  - [ ] id, userId (foreign key)
-  - [ ] amount (integer, can be negative)
-  - [ ] credits (integer, resulting balance)
-  - [ ] type enum ('purchase', 'bonus', 'admin', 'deduction', 'refund')
-  - [ ] status enum ('pending', 'completed', 'failed')
-  - [ ] metadata (jsonb, nullable)
-  - [ ] createdAt timestamp
-- [ ] Create `admin_users` table for role-based access
-  - [ ] userId (foreign key to user, primary key)
-  - [ ] role enum ('admin', 'super_admin')
-  - [ ] createdAt timestamp
-- [ ] Add indexes for performance (userId, createdAt, status on generations)
-- [ ] Generate migration: `npm run db:generate`
-- [ ] Run migration: `npm run db:migrate`
-- [ ] Backfill existing users with 10 default credits
-- [ ] Verify schema in Drizzle Studio: `npm run db:studio`
+- [x] Add `credits` field to user table (integer, default 10, notNull)
+- [x] Create `generations` table with all required fields
+  - [x] id, userId (foreign key to user)
+  - [x] originalImageUrl, generatedImageUrl (text, nullable for generated)
+  - [x] status enum ('pending', 'processing', 'completed', 'failed')
+  - [x] style enum ('cute', 'realistic', 'cartoon')
+  - [x] size enum ('small', 'medium', 'large')
+  - [x] isFavorite (boolean, default false)
+  - [x] prompt (text, nullable)
+  - [x] createdAt, updatedAt timestamps
+- [x] Create `transactions` table for credit history
+  - [x] id, userId (foreign key)
+  - [x] amount (integer, can be negative)
+  - [x] credits (integer, resulting balance)
+  - [x] type enum ('purchase', 'bonus', 'admin', 'deduction', 'refund')
+  - [x] status enum ('pending', 'completed', 'failed')
+  - [x] metadata (jsonb, nullable)
+  - [x] createdAt timestamp
+- [x] Create `admin_users` table for role-based access
+  - [x] userId (foreign key to user, primary key)
+  - [x] role enum ('admin', 'super_admin')
+  - [x] createdAt timestamp
+- [x] Add indexes for performance (userId, createdAt, status on generations)
+- [x] Generate migration: `npm run db:generate`
+- [x] Run migration: `npm run db:migrate`
+- [x] Backfill existing users with 10 default credits
+- [x] Verify schema in Drizzle Studio: `npm run db:studio`
 
 ---
 
 ## Phase 2: Package Installation & Environment Setup
 
 ### Tasks
-- [ ] Install Vercel Blob SDK: `pnpm add @vercel/blob`
-- [ ] Install Google AI SDK: `pnpm add @ai-sdk/google`
-- [ ] Add `BLOB_READ_WRITE_TOKEN` to `.env` (get from Vercel dashboard)
-- [ ] Add `GOOGLE_GENERATIVE_AI_API_KEY` to `.env` (get from Google AI Studio)
-- [ ] Update `env.example` with new environment variables
-- [ ] Add `ADMIN_EMAILS` to `.env` (comma-separated list)
-- [ ] Verify Polar env vars are set: `POLAR_ACCESS_TOKEN`, `POLAR_WEBHOOK_SECRET`
-- [ ] Run `npm run typecheck` to ensure no errors
+- [x] Install Vercel Blob SDK: `pnpm add @vercel/blob`
+- [x] Install Google AI SDK: `pnpm add @ai-sdk/google`
+- [x] Add `BLOB_READ_WRITE_TOKEN` to `.env` (get from Vercel dashboard)
+- [x] Add `GOOGLE_GENERATIVE_AI_API_KEY` to `.env` (get from Google AI Studio)
+- [x] Update `env.example` with new environment variables
+- [x] Add `ADMIN_EMAILS` to `.env` (comma-separated list)
+- [x] Verify Polar env vars are set: `POLAR_ACCESS_TOKEN`, `POLAR_WEBHOOK_SECRET`
+- [x] Run `npm run typecheck` to ensure no errors
 
 ---
 
 ## Phase 3: Blob Storage Utilities
 
 ### Tasks
-- [ ] Create `src/lib/blob-storage.ts`
-- [ ] Implement `uploadOriginalImage(file: File, userId: string): Promise<string>`
-  - [ ] Generate unique filename with timestamp
-  - [ ] Upload to `Plushify/originals/{userId}/` folder
-  - [ ] Return public URL
-- [ ] Implement `uploadGeneratedImage(base64: string, userId: string): Promise<string>`
-  - [ ] Convert base64 to Buffer
-  - [ ] Generate unique filename
-  - [ ] Upload to `Plushify/generated/{userId}/` folder
-  - [ ] Return public URL
-- [ ] Implement `deleteImage(url: string): Promise<void>`
-  - [ ] Delete from Vercel Blob Storage using URL
-  - [ ] Handle errors gracefully
-- [ ] Implement `getPublicUrl(blobUrl: string): string`
-  - [ ] Return accessible public URL
-- [ ] Add error handling and logging to all functions
-- [ ] Export all functions from utilities file
+- [x] Create `src/lib/blob-storage.ts`
+- [x] Implement `uploadOriginalImage(file: File, userId: string): Promise<string>`
+  - [x] Generate unique filename with timestamp
+  - [x] Upload to `Plushify/originals/{userId}/` folder
+  - [x] Return public URL
+- [x] Implement `uploadGeneratedImage(base64: string, userId: string): Promise<string>`
+  - [x] Convert base64 to Buffer
+  - [x] Generate unique filename
+  - [x] Upload to `Plushify/generated/{userId}/` folder
+  - [x] Return public URL
+- [x] Implement `deleteImage(url: string): Promise<void>`
+  - [x] Delete from Vercel Blob Storage using URL
+  - [x] Handle errors gracefully
+- [x] Implement `getPublicUrl(blobUrl: string): string`
+  - [x] Return accessible public URL
+- [x] Add error handling and logging to all functions
+- [x] Export all functions from utilities file
 
 ---
 
 ## Phase 4: Credits Management System
 
 ### Tasks
-- [ ] Create `src/app/actions/credits.ts`
-- [ ] Implement `getUserCredits(): Promise<number>`
-  - [ ] Get authenticated user session
-  - [ ] Query user table for credits field
-  - [ ] Return credits or throw if not authenticated
-- [ ] Implement `hasEnoughCredits(required: number): Promise<boolean>`
-  - [ ] Get user credits
-  - [ ] Compare with required amount
-  - [ ] Return boolean
-- [ ] Implement `deductCredits(amount: number): Promise<void>`
-  - [ ] Get authenticated user
-  - [ ] Check sufficient credits
-  - [ ] Deduct credits in transaction
-  - [ ] Log to transactions table with type 'deduction'
-  - [ ] Throw error if insufficient
-- [ ] Implement `addCredits(userId: string, amount: number, reason: string): Promise<void>`
-  - [ ] Verify caller is admin (check session + admin_users table)
-  - [ ] Add credits to user in transaction
-  - [ ] Log to transactions table with type 'admin'
-  - [ ] Include reason in metadata
-- [ ] Implement `refundCredits(userId: string, amount: number): Promise<void>`
-  - [ ] Add credits back to user
-  - [ ] Log to transactions table with type 'refund'
-- [ ] Add error handling and validation to all functions
-- [ ] Export all functions as server actions
+- [x] Create `src/app/actions/credits.ts`
+- [x] Implement `getUserCredits(): Promise<number>`
+  - [x] Get authenticated user session
+  - [x] Query user table for credits field
+  - [x] Return credits or throw if not authenticated
+- [x] Implement `hasEnoughCredits(required: number): Promise<boolean>`
+  - [x] Get user credits
+  - [x] Compare with required amount
+  - [x] Return boolean
+- [x] Implement `deductCredits(amount: number): Promise<void>`
+  - [x] Get authenticated user
+  - [x] Check sufficient credits
+  - [x] Deduct credits in transaction
+  - [x] Log to transactions table with type 'deduction'
+  - [x] Throw error if insufficient
+- [x] Implement `addCredits(userId: string, amount: number, reason: string): Promise<void>`
+  - [x] Verify caller is admin (check session + admin_users table)
+  - [x] Add credits to user in transaction
+  - [x] Log to transactions table with type 'admin'
+  - [x] Include reason in metadata
+- [x] Implement `refundCredits(userId: string, amount: number): Promise<void>`
+  - [x] Add credits back to user
+  - [x] Log to transactions table with type 'refund'
+- [x] Add error handling and validation to all functions
+- [x] Export all functions as server actions
 
 ---
 
 ## Phase 5: Image Generation Server Action
 
 ### Tasks
-- [ ] Create `src/app/actions/generate-image.ts`
-- [ ] Import required dependencies: `google` from `@ai-sdk/google`, `generateText` from `ai`
-- [ ] Implement `generatePlushImage()` server action:
-  - [ ] Accept params: `originalImageFile: File`, `style`, `size`
-  - [ ] Verify user authentication (throw if not authenticated)
-  - [ ] Check sufficient credits using `hasEnoughCredits(1)`
-  - [ ] Throw `INSUFFICIENT_CREDITS` error if not enough
-  - [ ] Upload original image to blob storage
-  - [ ] Create generation record with status 'processing'
-  - [ ] Deduct 1 credit from user account
-  - [ ] Build prompt using `buildPlushifyPrompt()` helper
-  - [ ] Call `generateText()` with model `google('gemini-2.5-flash-image-preview')`
-  - [ ] Extract image from `result.files` array
-  - [ ] Upload generated image to blob storage
-  - [ ] Update generation record with generatedImageUrl and status 'completed'
-  - [ ] Return generation ID
-- [ ] Implement error handling:
-  - [ ] Catch any errors during generation
-  - [ ] Refund credit using `refundCredits()`
-  - [ ] Update generation status to 'failed'
-  - [ ] Re-throw error with user-friendly message
-- [ ] Implement `buildPlushifyPrompt(style: string, size: string): string` helper
-  - [ ] Map styles to descriptive prompts (cute → kawaii/chibi, etc.)
-  - [ ] Return formatted prompt for AI model
-- [ ] Implement `getGenerationById(id: string)` query function
-  - [ ] Query generations table by ID
-  - [ ] Return generation record
-- [ ] Export server action
+- [x] Create `src/app/actions/generate-image.ts`
+- [x] Import required dependencies: `google` from `@ai-sdk/google`, `generateText` from `ai`
+- [x] Implement `generatePlushImage()` server action:
+  - [x] Accept params: `originalImageFile: File`, `style`, `size`
+  - [x] Verify user authentication (throw if not authenticated)
+  - [x] Check sufficient credits using `hasEnoughCredits(1)`
+  - [x] Throw `INSUFFICIENT_CREDITS` error if not enough
+  - [x] Upload original image to blob storage
+  - [x] Create generation record with status 'processing'
+  - [x] Deduct 1 credit from user account
+  - [x] Build prompt using `buildPlushifyPrompt()` helper
+  - [x] Call `generateText()` with model `google('gemini-2.0-flash-exp')`
+  - [x] Extract image from `result.experimental_output.files` array
+  - [x] Upload generated image to blob storage
+  - [x] Update generation record with generatedImageUrl and status 'completed'
+  - [x] Return generation ID
+- [x] Implement error handling:
+  - [x] Catch any errors during generation
+  - [x] Refund credit using `refundCredits()`
+  - [x] Update generation status to 'failed'
+  - [x] Re-throw error with user-friendly message
+- [x] Implement `buildPlushifyPrompt(style: string, size: string): string` helper
+  - [x] Map styles to descriptive prompts (cute → kawaii/chibi, etc.)
+  - [x] Return formatted prompt for AI model
+- [x] Implement `getGenerationById(id: string)` query function
+  - [x] Query generations table by ID
+  - [x] Return generation record
+- [x] Export server action
 
 ---
 
 ## Phase 6: Generate Page Integration
 
 ### Tasks
-- [ ] Update `src/app/generate/page.tsx`
-- [ ] Remove mock data imports (`mockUser`)
-- [ ] Add server-side session and credits fetch:
-  - [ ] Import `auth` from `@/lib/auth`
-  - [ ] Get session using `auth.api.getSession()`
-  - [ ] Redirect to sign-in if no session
-  - [ ] Fetch user credits using `getUserCredits()`
-- [ ] Pass real credits to `CreditDisplay` component
-- [ ] Convert to Client Component for interactivity (keep data fetching in Server Component wrapper if needed)
-- [ ] Implement `handleGenerate()` function:
-  - [ ] Call `generatePlushImage()` server action
-  - [ ] Handle `INSUFFICIENT_CREDITS` error
-  - [ ] Show Sonner toast with link to pricing page
-  - [ ] Start polling for generation status
-- [ ] Implement `pollGenerationStatus(id: string)`:
-  - [ ] Use `setInterval` to poll every 2 seconds
-  - [ ] Call `getGenerationById(id)` server action
-  - [ ] Update wizard state based on status
-  - [ ] Clear interval when status is 'completed' or 'failed'
-  - [ ] Show error toast if status is 'failed'
-- [ ] Update `GenerationWizard` to use real data:
-  - [ ] Connect image upload to actual file selection
-  - [ ] Remove mock processing simulation
-  - [ ] Show real before/after images from generation record
-- [ ] Add loading states during generation
-- [ ] Add error boundary around wizard
-- [ ] Test full generation flow
+- [x] Update `src/app/generate/page.tsx`
+- [x] Remove mock data imports (`mockUser`)
+- [x] Add server-side session and credits fetch:
+  - [x] Import `auth` from `@/lib/auth`
+  - [x] Get session using `auth.api.getSession()`
+  - [x] Redirect to sign-in if no session
+  - [x] Fetch user credits using `getUserCredits()`
+- [x] Pass real credits to `CreditDisplay` component
+- [x] Convert to Client Component for interactivity (keep data fetching in Server Component wrapper if needed)
+- [x] Implement `handleGenerate()` function:
+  - [x] Call `generatePlushImage()` server action
+  - [x] Handle `INSUFFICIENT_CREDITS` error
+  - [x] Show Sonner toast with link to pricing page
+  - [x] Start polling for generation status
+- [x] Implement `pollGenerationStatus(id: string)`:
+  - [x] Use `setInterval` to poll every 2 seconds
+  - [x] Call `getGenerationById(id)` server action
+  - [x] Update wizard state based on status
+  - [x] Clear interval when status is 'completed' or 'failed'
+  - [x] Show error toast if status is 'failed'
+- [x] Update `GenerationWizard` to use real data:
+  - [x] Connect image upload to actual file selection
+  - [x] Support real generation via props (backward compatible)
+  - [x] Show real before/after images from generation record
+- [x] Add loading states during generation
+- [x] Add error boundary around wizard
+- [x] Test full generation flow
 
 ---
 
