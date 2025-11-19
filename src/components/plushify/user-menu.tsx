@@ -10,13 +10,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { LayoutDashboard, ImageIcon, User, CreditCard } from "lucide-react";
+import { LayoutDashboard, ImageIcon, User, CreditCard, LogOut } from "lucide-react";
+import { signOut } from "@/lib/auth-client";
 
 interface UserMenuProps {
   user: {
     name: string;
     email: string;
-    image?: string;
+    image?: string | null;
   };
 }
 
@@ -32,7 +33,7 @@ export function UserMenu({ user }: UserMenuProps) {
     <DropdownMenu>
       <DropdownMenuTrigger className="focus:outline-none">
         <Avatar className="h-9 w-9 cursor-pointer transition-opacity hover:opacity-80">
-          <AvatarImage src={user.image} alt={user.name} />
+          <AvatarImage src={user.image || undefined} alt={user.name} />
           <AvatarFallback>{initials}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
@@ -70,6 +71,16 @@ export function UserMenu({ user }: UserMenuProps) {
             <CreditCard className="mr-2 h-4 w-4" />
             Pricing
           </Link>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem
+          className="cursor-pointer text-red-600 focus:text-red-600"
+          onClick={async () => {
+            await signOut();
+          }}
+        >
+          <LogOut className="mr-2 h-4 w-4" />
+          Sign Out
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

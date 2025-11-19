@@ -1,12 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import { ModeToggle } from "./ui/mode-toggle";
 import { UserMenu } from "./plushify/user-menu";
-import { mockUser } from "@/lib/mock-data";
+import { useSession, signIn } from "@/lib/auth-client";
 import { Heart } from "lucide-react";
+import { Button } from "./ui/button";
 
 export function SiteHeader() {
+  const { data: session, isPending } = useSession();
   return (
-    <header className="border-b">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <h1 className="text-2xl font-bold">
@@ -48,7 +52,24 @@ export function SiteHeader() {
         {/* Right Side Actions */}
         <div className="flex items-center gap-4">
           <ModeToggle />
-          <UserMenu user={mockUser} />
+          {isPending ? (
+            <div className="h-9 w-9 rounded-full bg-muted animate-pulse" />
+          ) : session?.user ? (
+            <UserMenu user={session.user} />
+          ) : (
+            <Button
+              variant="default"
+              size="sm"
+              onClick={async () => {
+                await signIn.social({
+                  provider: "google",
+                  callbackURL: "/dashboard",
+                });
+              }}
+            >
+              Sign In
+            </Button>
+          )}
         </div>
       </div>
     </header>

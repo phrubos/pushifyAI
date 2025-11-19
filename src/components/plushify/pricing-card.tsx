@@ -53,11 +53,9 @@ export function PricingCard({
 
       <CardHeader className="text-center">
         <CardTitle className="text-2xl">{name}</CardTitle>
-        <CardDescription>
-          <div className="mt-4 flex items-baseline justify-center gap-1">
-            <span className="text-4xl font-bold text-foreground">${price}</span>
-            <span className="text-muted-foreground">/one-time</span>
-          </div>
+        <CardDescription className="mt-4 flex items-baseline justify-center gap-1">
+          <span className="text-4xl font-bold text-foreground">${price}</span>
+          <span className="text-muted-foreground">/one-time</span>
         </CardDescription>
       </CardHeader>
 

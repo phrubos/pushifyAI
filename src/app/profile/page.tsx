@@ -7,14 +7,20 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { CreditDisplay } from "@/components/plushify/credit-display";
-import { mockUser, mockPurchases } from "@/lib/mock-data";
 import { Mail, Calendar, User, Shield, ArrowLeft, CreditCard, TrendingUp } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function ProfilePage() {
   const { data: session, isPending } = useSession();
   const router = useRouter();
+
+  useEffect(() => {
+    if (!isPending && !session) {
+      router.push("/");
+    }
+  }, [session, isPending, router]);
 
   if (isPending) {
     return (
@@ -25,7 +31,6 @@ export default function ProfilePage() {
   }
 
   if (!session) {
-    router.push("/");
     return null;
   }
 
@@ -167,15 +172,13 @@ export default function ProfilePage() {
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-lg font-semibold capitalize">{mockUser.plan} Plan</h3>
+                <h3 className="text-lg font-semibold capitalize">Pro Plan</h3>
                 <p className="text-sm text-muted-foreground">
-                  {mockUser.plan === "basic" && "Perfect for getting started"}
-                  {mockUser.plan === "pro" && "Great for regular users"}
-                  {mockUser.plan === "elite" && "Maximum value and features"}
+                  Great for regular users
                 </p>
               </div>
               <Badge variant="default" className="capitalize">
-                {mockUser.plan}
+                Pro
               </Badge>
             </div>
             <Separator />
@@ -185,17 +188,13 @@ export default function ProfilePage() {
                 <li>✓ HD quality generations</li>
                 <li>✓ Unlimited gallery storage</li>
                 <li>✓ All style options</li>
-                {(mockUser.plan === "pro" || mockUser.plan === "elite") && (
-                  <li>✓ Priority support</li>
-                )}
+                <li>✓ Priority support</li>
               </ul>
             </div>
             <div className="flex gap-2">
-              {mockUser.plan !== "elite" && (
-                <Button asChild>
-                  <Link href="/pricing">Upgrade Plan</Link>
-                </Button>
-              )}
+              <Button asChild>
+                <Link href="/pricing">Upgrade Plan</Link>
+              </Button>
               <Button variant="outline" asChild>
                 <Link href="/pricing">Change Plan</Link>
               </Button>
@@ -216,7 +215,7 @@ export default function ProfilePage() {
               <div>
                 <p className="text-sm text-muted-foreground">Current Balance</p>
                 <div className="mt-1">
-                  <CreditDisplay credits={mockUser.credits} size="lg" />
+                  <CreditDisplay credits={42} size="lg" />
                 </div>
               </div>
               <CreditCard className="h-8 w-8 text-muted-foreground" />
@@ -246,33 +245,9 @@ export default function ProfilePage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
-              {mockPurchases.slice(0, 5).map((purchase) => (
-                <div
-                  key={purchase.id}
-                  className="flex items-center justify-between p-4 border rounded-lg"
-                >
-                  <div className="flex items-center gap-3">
-                    <TrendingUp className="h-5 w-5 text-muted-foreground" />
-                    <div>
-                      <p className="font-medium">{purchase.plan}</p>
-                      <p className="text-sm text-muted-foreground">
-                        {new Date(purchase.date).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "short",
-                          day: "numeric",
-                        })}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-medium">${purchase.amount}</p>
-                    <p className="text-sm text-muted-foreground">
-                      {purchase.credits} credits
-                    </p>
-                  </div>
-                </div>
-              ))}
+            <div className="text-center py-8 text-muted-foreground">
+              <p>No purchase history available yet.</p>
+              <p className="text-sm mt-2">Your credit purchases will appear here.</p>
             </div>
           </CardContent>
         </Card>

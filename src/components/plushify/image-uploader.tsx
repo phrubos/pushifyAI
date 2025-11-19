@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Upload, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 interface ImageUploaderProps {
   onImageSelect: (file: File, preview: string) => void;
@@ -30,13 +31,13 @@ export function ImageUploader({
   const handleFile = (file: File) => {
     // Validate file type
     if (!file.type.match(/^image\/(jpeg|jpg|png)$/)) {
-      alert("Please upload a JPG or PNG image");
+      toast.error("Please upload a JPG or PNG image");
       return;
     }
 
     // Validate file size (max 10MB)
     if (file.size > 10 * 1024 * 1024) {
-      alert("File size must be less than 10MB");
+      toast.error("File size must be less than 10MB");
       return;
     }
 

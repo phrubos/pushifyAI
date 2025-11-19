@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { toast } from "sonner";
 import {
   Select,
   SelectContent,
@@ -29,7 +31,7 @@ const PROCESSING_MESSAGES = [
 ];
 
 const MOCK_GENERATED_IMAGE =
-  "https://images.unsplash.com/photo-1563291074-2bf8677ac0e5?w=800&q=80";
+  "https://placehold.co/800x800/ffb6c1/8b4789.png?text=Your+Adorable+Plushie";
 
 interface GenerationWizardProps {
   className?: string;
@@ -101,8 +103,9 @@ export function GenerationWizard({
   // Download result
   const handleDownload = () => {
     // In a real app, this would download the generated image
-    console.log("Downloading plushie image...");
-    alert("Download started! (Mock functionality)");
+    toast.success("Download started!", {
+      description: "Your plushie image is being downloaded"
+    });
   };
 
   return (
@@ -289,9 +292,9 @@ export function GenerationWizard({
                   variant="outline"
                   size="lg"
                   className="flex-1"
-                  onClick={() => window.location.href = "/gallery"}
+                  asChild
                 >
-                  View Gallery
+                  <Link href="/gallery">View Gallery</Link>
                 </Button>
                 <Button size="lg" className="flex-1" onClick={handleDownload}>
                   <Download className="mr-2 h-4 w-4" />

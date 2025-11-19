@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { toast } from "sonner"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -50,11 +51,11 @@ export default function GalleryPage() {
       return 0
     })
 
-  const handleDownload = (id: string) => {
+  const handleDownload = (_id: string) => {
     // Mock download functionality
-    console.log("Downloading generation:", id)
-    // In a real app, this would trigger an actual download
-    alert("Download started! (This is a mock action)")
+    toast.success("Download started!", {
+      description: "Your plushie image is being downloaded"
+    });
   }
 
   const handleDelete = (id: string) => {
@@ -80,7 +81,6 @@ export default function GalleryPage() {
     const generation = generations.find((gen) => gen.id === id)
     if (generation) {
       // Mock view original - in a real app would open a modal or new page
-      console.log("Viewing original:", generation.originalImage)
       window.open(generation.originalImage, "_blank")
     }
   }
@@ -93,9 +93,9 @@ export default function GalleryPage() {
     setFilterBy(value as FilterOption)
   }
 
-  const handleSearch = (value: string) => {
+  const handleSearch = (_value: string) => {
     // Search functionality would be implemented here
-    console.log("Search query:", value)
+    // In a real app, this would filter generations based on the search query
   }
 
   return (

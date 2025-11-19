@@ -1,8 +1,11 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, KeyboardEvent } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { GripVertical } from "lucide-react";
+
+type SliderAspect = "square" | "portrait" | "landscape";
 
 interface BeforeAfterSliderProps {
   beforeImage: string;
@@ -10,6 +13,8 @@ interface BeforeAfterSliderProps {
   beforeAlt?: string;
   afterAlt?: string;
   className?: string;
+  aspect?: SliderAspect;
+  priority?: boolean;
 }
 
 export function BeforeAfterSlider({
@@ -18,6 +23,8 @@ export function BeforeAfterSlider({
   beforeAlt = "Before",
   afterAlt = "After",
   className,
+  aspect = "square",
+  priority = false,
 }: BeforeAfterSliderProps) {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
@@ -31,6 +38,14 @@ export function BeforeAfterSlider({
     const percentage = (x / rect.width) * 100;
     const bounded = Math.max(0, Math.min(100, percentage));
     setSliderPosition(bounded);
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "ArrowLeft") {
+      setSliderPosition((prev) => Math.max(0, prev - 5));
+    } else if (e.key === "ArrowRight") {
+      setSliderPosition((prev) => Math.min(100, prev + 5));
+    }
   };
 
   const handleMouseDown = () => {
@@ -68,15 +83,29 @@ export function BeforeAfterSlider({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDragging]);
 
+  const aspectClasses: Record<SliderAspect, string> = {
+    square: "aspect-square",
+    portrait: "aspect-[4/5]",
+    landscape: "aspect-[4/3]",
+  };
+
   return (
     <div
       ref={containerRef}
       className={cn(
-        "group relative aspect-video w-full cursor-ew-resize overflow-hidden rounded-lg",
+        "group relative w-full cursor-ew-resize overflow-hidden rounded-lg select-none focus:outline-none focus:ring-2 focus:ring-primary/50",
+        aspectClasses[aspect],
         className
       )}
       onMouseDown={handleMouseDown}
       onTouchStart={handleMouseDown}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="slider"
+      aria-label="Before and after comparison slider"
+      aria-valuenow={sliderPosition}
+      aria-valuemin={0}
+      aria-valuemax={100}
     >
       {/* After Image (Background) */}
       <div className="absolute inset-0">
@@ -86,8 +115,10 @@ export function BeforeAfterSlider({
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority={priority}
+          quality={90}
         />
-        <div className="absolute right-4 top-4 rounded-md bg-black/60 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
+        <div className="absolute right-4 top-4 rounded-full bg-black/40 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           After
         </div>
       </div>
@@ -103,22 +134,21 @@ export function BeforeAfterSlider({
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority={priority}
+          quality={90}
         />
-        <div className="absolute left-4 top-4 rounded-md bg-black/60 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
+        <div className="absolute left-4 top-4 rounded-full bg-black/40 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           Before
         </div>
       </div>
 
       {/* Slider Line and Handle */}
       <div
-        className="absolute inset-y-0 w-1 bg-white shadow-lg transition-opacity group-hover:opacity-100"
+        className="absolute inset-y-0 w-1 bg-white/80 shadow-[0_0_10px_rgba(0,0,0,0.2)] backdrop-blur-sm"
         style={{ left: `${sliderPosition}%` }}
       >
-        <div className="absolute left-1/2 top-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-xl">
-          <div className="flex gap-1">
-            <div className="h-4 w-0.5 bg-gray-400" />
-            <div className="h-4 w-0.5 bg-gray-400" />
-          </div>
+        <div className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-xl border border-gray-100 transform transition-transform hover:scale-110 active:scale-95">
+          <GripVertical className="h-6 w-6 text-primary/80" />
         </div>
       </div>
     </div>
