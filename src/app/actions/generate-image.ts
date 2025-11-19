@@ -167,6 +167,7 @@ async function generateImageInBackground(
           modalities: ["image", "text"],
         },
       },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any); // Type assertion for experimental features
 
     console.log("AI generation completed");
@@ -177,6 +178,7 @@ async function generateImageInBackground(
     let hasImageOutput = false;
 
     // OpenRouter returns images in response.choices[0].message.images
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const rawResponse = result as any;
     
     console.log("Checking for images in response...");

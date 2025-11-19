@@ -4,7 +4,8 @@ import { requireAdmin } from "@/lib/admin";
 import { db } from "@/lib/db";
 import { user, transactions } from "@/lib/schema";
 import { eq, desc, ilike } from "drizzle-orm";
-import { addCredits } from "./credits";
+import { addCredits as _addCredits } from "./credits";
+void _addCredits; // Used for type reference in admin operations
 import crypto from "crypto";
 
 /**

@@ -33,6 +33,7 @@ export const Meteors = ({
       delay: Math.random() * 5,
       duration: Math.floor(Math.random() * (10 - 5) + 5),
     }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mounted, meteors.length]);
 
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ImageIcon, Heart, Sparkles, Loader2 } from "lucide-react";
+import { ImageIcon, Heart, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
 
 interface StatsCardsProps {

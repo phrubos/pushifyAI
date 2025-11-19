@@ -101,7 +101,7 @@ export function AdminCreditsClient() {
 
     setIsProcessing(true);
     try {
-      const result = await adminAddCredits(selectedUser.id, amount, creditReason);
+      await adminAddCredits(selectedUser.id, amount, creditReason);
       toast.success(`Added ${amount} credits successfully`);
       
       // Refresh user data
@@ -139,7 +139,7 @@ export function AdminCreditsClient() {
 
     setIsProcessing(true);
     try {
-      const result = await adminRemoveCredits(selectedUser.id, amount, creditReason);
+      await adminRemoveCredits(selectedUser.id, amount, creditReason);
       toast.success(`Removed ${amount} credits successfully`);
       
       // Refresh user data

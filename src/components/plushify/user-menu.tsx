@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { LayoutDashboard, ImageIcon, User, CreditCard, LogOut } from "lucide-react";
+import { LayoutDashboard, User, CreditCard, LogOut } from "lucide-react";
 import { signOut } from "@/lib/auth-client";
 
 interface UserMenuProps {

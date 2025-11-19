@@ -7,6 +7,5 @@ export { PricingCard } from "./pricing-card";
 export { BeforeAfterSlider } from "./before-after-slider";
 export { ImageUploader } from "./image-uploader";
 export { GalleryItem } from "./gallery-item";
-export { GalleryGrid } from "./gallery-grid";
 export { FilterBar } from "./filter-bar";
 export { GenerationWizard } from "./generation-wizard";

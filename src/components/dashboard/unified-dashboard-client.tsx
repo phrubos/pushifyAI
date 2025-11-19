@@ -19,7 +19,7 @@ import { StatsCards } from "@/components/dashboard/stats-cards";
 import { QuickActionsSidebar } from "@/components/dashboard/quick-actions-sidebar";
 import { FilterBar } from "@/components/plushify/filter-bar";
 import { GalleryItem } from "@/components/plushify/gallery-item";
-import { Plus, Sparkles, CreditCard } from "lucide-react";
+import { Plus, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
 import { User } from "better-auth";
 import { InferSelectModel } from "drizzle-orm";

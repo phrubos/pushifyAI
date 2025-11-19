@@ -47,6 +47,7 @@ export async function createCheckoutSession(planId: string) {
         userId: session.user.id,
         planId: planId,
       },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any); // Type assertion due to SDK type limitations
 
     return { url: result.url };
